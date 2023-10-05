@@ -1,0 +1,36 @@
+html {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#background {
+    background-color: darkblue;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    /* height: 100vh; */
+}
+
+#game-grid {
+    display: grid;
+    /* grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); */
+    grid-template-columns: repeat(auto-fill, 20px);
+    grid-gap: 1px;
+    background-color: black;
+    border: green 1px solid;
+    width: 100vh;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.grid-item {
+    /* background-color: lightblue; */
+    border: 1px solid white;
+    width: 20px;
+    height: 20px;
+}
