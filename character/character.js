@@ -175,6 +175,8 @@ function bulletDirection(event) {
     };
 }
 
+let gunImageCounter = 0;
+
 function gunImage() {
     console.log("gun image");
     let alternateImage = document.createElement('img');
@@ -185,14 +187,24 @@ function gunImage() {
     alternateImage.style.left = 0;
     alternateImage.style.top = 0;
     alternateImage.style.display = 'block';
+    alternateImage.classList.add('character-no-transform')
 
-    character.style.backgroundImage = 'none';
+    if (gunImageCounter === 0) {
+        character.style.backgroundImage = 'none';
+    }
+    gunImageCounter++;
+
     character.appendChild(alternateImage);
+
     setTimeout(() => {
         character.removeChild(alternateImage);
-        character.style.backgroundImage = 'url(assets/goob_big_eyes.png)';
-        console.log("gun image removed");
-    }, 500);
+        gunImageCounter--;
+
+        if (gunImageCounter === 0) {
+            character.style.backgroundImage = 'url(assets/goob_big_eyes.png)';
+            console.log("gun image removed");
+        }
+    }, 200000);
 }
 
 function updateBullets() {

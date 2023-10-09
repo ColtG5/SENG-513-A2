@@ -10,6 +10,7 @@
     /* transition: transform 0.1s ease; */
 }
 
+/* :not(*) is to only style that element, and none of its children (so gun isnt oriented with normal goob) */
 .character-up {
     transform: scaleY(-1);
 }
@@ -40,4 +41,8 @@
 
 .character-down-right {
     transform: scaleX(-1) scaleY(1);
+}
+
+.character-no-transform {
+    transform: none;
 }
