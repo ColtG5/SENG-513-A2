@@ -222,10 +222,12 @@ function gunImage() {
     alternateImage.style.left = 0;
     alternateImage.style.top = 0;
     alternateImage.style.display = 'block';
-    alternateImage.classList.add('character-no-transform')
+    // alternateImage.classList.add('character-no-transform')
 
+    // if we shot and there is currently no gun image replacing the goob image, hide the goob image (and add gun image below)
     if (gunImageCounter === 0) {
         character.style.backgroundImage = 'none';
+        character.classList.add('character-no-transform');
     }
     gunImageCounter++;
 
@@ -237,9 +239,10 @@ function gunImage() {
 
         if (gunImageCounter === 0) {
             character.style.backgroundImage = 'url(assets/goob_big_eyes.png)';
+            character.classList.remove('character-no-transform');
             // console.log("gun image removed");
         }
-    }, 200);
+    }, 300);
 }
 
 function updateBullets() {

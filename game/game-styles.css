@@ -49,6 +49,7 @@ body {
     height: 95vmin;
     width: 95vmin;
     outline: 5px solid #3C2B00;
+    user-select: none;
     position: relative;
 }
 

@@ -10,36 +10,35 @@
     /* transition: transform 0.1s ease; */
 }
 
-/* :not(*) is to only style that element, and none of its children (so gun isnt oriented with normal goob) */
-.character-up:not(*) {
+.character-up {
     transform: scaleY(-1);
 }
 
-.character-down:not(*) {
+.character-down {
     transform: scaleY(1);
 }
 
-.character-left:not(*) {
+.character-left {
     transform: scaleX(1);
 }
 
-.character-right:not(*) {
+.character-right {
     transform: scaleX(-1);
 }
 
-.character-up-left:not(*) {
+.character-up-left {
     transform: scaleX(1) scaleY(-1);
 }
 
-.character-up-right:not(*) {
+.character-up-right {
     transform: scaleX(-1) scaleY(-1);
 }
 
-.character-down-left:not(*) {
+.character-down-left {
     transform: scaleX(1) scaleY(1);
 }
 
-.character-down-right:not(*) {
+.character-down-right {
     transform: scaleX(-1) scaleY(1);
 }
 
