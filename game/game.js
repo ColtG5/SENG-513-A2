@@ -7,6 +7,8 @@ let accumulatedTime = 0;
 
 function updateGame() {
     updateCharacterPosition();
+
+    // resetKeyStates();
 }
 
 function renderGame() {

@@ -86,22 +86,35 @@ function updateCharacterOrientation(dx, dy) {
     }
 }
 
-// Helper function to check if a key is down
 function isKeyDown(key) {
     return keyStates[key] === true;
 }
+
+// function resetKeyStates() {
+//     for (const key in keyStates) {
+//         if (keyStates.hasOwnProperty(key)) {
+//             keyStates[key] = false;
+//         }
+//     }
+// }
 
 const keyStates = {};
 
 window.addEventListener('keydown', (e) => {
     keyStates[e.key.toLocaleLowerCase()] = true;
-    // console.log(e.key)
+    console.log(e.key)
 });
 
 document.addEventListener('keyup', (e) => {
     keyStates[e.key.toLocaleLowerCase()] = false;
     // console.log("released: " + e.key)
 });
+
+function resetKeyStates() {
+    for (const key in keyStates) {
+        keyStates[key] = false
+    }
+}
 
 // --------------------------- SHOOTING ---------------------------
 
@@ -112,7 +125,30 @@ const seperationFromCharacter = 30;
 
 let bullets = [];
 
-gameContainer.addEventListener('click', function(event) {
+gameContainer.addEventListener('click', (event) => {
+    // checkOutOfBoundsClick(event);
+    createBullet(event);
+});
+
+window.onfocus = function (ev) {
+    console.log("gained focus");
+};
+
+
+window.onblur = function (ev) {
+    console.log("lost focus");
+    resetKeyStates();
+};
+
+// document.addEventListener("visibilitychange", (event) => {
+//     if (document.visibilityState == "visible") {
+//         console.log("tab is active")
+//     } else {
+//         console.log("tab is inactive")
+//     }
+// });
+
+function createBullet(event) {
     if (!isKeyDown('shift')) {
         return;
     }
@@ -146,8 +182,7 @@ gameContainer.addEventListener('click', function(event) {
     // console.log(bullets);
 
     gunImage();
-
-});
+}
 
 function bulletDirection(event) {
     // Calculate the direction vector from character to mouse pointer
@@ -178,7 +213,7 @@ function bulletDirection(event) {
 let gunImageCounter = 0;
 
 function gunImage() {
-    console.log("gun image");
+    // console.log("gun image");
     let alternateImage = document.createElement('img');
     alternateImage.src = 'assets/GOOB_GUN.png';
     alternateImage.width = character.offsetWidth;
@@ -202,7 +237,7 @@ function gunImage() {
 
         if (gunImageCounter === 0) {
             character.style.backgroundImage = 'url(assets/goob_big_eyes.png)';
-            console.log("gun image removed");
+            // console.log("gun image removed");
         }
     }, 200);
 }
