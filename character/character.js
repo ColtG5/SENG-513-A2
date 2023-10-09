@@ -204,7 +204,7 @@ function gunImage() {
             character.style.backgroundImage = 'url(assets/goob_big_eyes.png)';
             console.log("gun image removed");
         }
-    }, 200000);
+    }, 200);
 }
 
 function updateBullets() {
