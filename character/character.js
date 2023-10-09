@@ -27,6 +27,7 @@ function updateCharacterPosition() {
     if (isKeyDown('a')) {
         dx = -movementSpeed;
     } else if (isKeyDown('d')) {
+        console.log('hehe');
         dx = movementSpeed;
     } else {
         dx = 0;
@@ -43,6 +44,7 @@ function updateCharacterPosition() {
 
     x += dx;
     y += dy;
+    // console.log(x, y)
     character.style.left = x + 'px';
     character.style.top = y + 'px';
 }
@@ -92,34 +94,97 @@ function isKeyDown(key) {
 const keyStates = {};
 
 window.addEventListener('keydown', (e) => {
-    keyStates[e.key] = true;
+    keyStates[e.key.toLocaleLowerCase()] = true;
     // console.log(e.key)
 });
 
 document.addEventListener('keyup', (e) => {
-    keyStates[e.key] = false;
+    keyStates[e.key.toLocaleLowerCase()] = false;
+    // console.log("released: " + e.key)
 });
 
 // --------------------------- SHOOTING ---------------------------
 
-const bulletSpeed = 10;
+const bulletSpeed = 2;
+const bulletWidth = 10;
+const bulletHeight = 10;
+const seperationFromCharacter = 30;
 
-function didShoot() {
+let bullets = [];
 
-}
+gameContainer.addEventListener('click', function(event) {
+    if (!isKeyDown('shift')) {
+        return;
+    }
 
-function shoot() {
+    let { nDeltaX, nDeltaY } = bulletDirection(event);
+
+    const bulletStartX = (x + (character.offsetWidth / 2) + nDeltaX * seperationFromCharacter) - bulletWidth / 2;
+    const bulletStartY = (y + (character.offsetHeight / 2) + nDeltaY * seperationFromCharacter) - bulletHeight / 2;
+    console.log(nDeltaX, nDeltaY)
+    console.log(bulletStartX, bulletStartY);
+
+    console.log('shoot fr fr')
     const bullet = document.createElement('div');
     bullet.classList.add('bullet');
-    bullet.style.left = x + 'px';
-    bullet.style.top = y + 'px';
-    bullet.style.width = '10px';
-    bullet.style.height = '10px';
-    bullet.style.backgroundColor = 'blue';
+    // console.log(x, y);
+    bullet.style.left = bulletStartX + 'px';
+    bullet.style.top = bulletStartY + 'px';
+    bullet.style.position = 'absolute';
+    bullet.style.width = bulletWidth + 'px';
+    bullet.style.height = bulletHeight + 'px';
+    bullet.style.backgroundColor = '#32BEFF';
+    bullet.style.borderRadius = '50%';
     gameContainer.appendChild(bullet);
+    bullets.push({
+        element: bullet,
+        x: bulletStartX,
+        y: bulletStartY,
+        dx: nDeltaX * bulletSpeed,
+        dy: nDeltaY * bulletSpeed
+    });
+    console.log(bullets);
+});
 
-    
+function bulletDirection(event) {
+    // Calculate the direction vector from character to mouse pointer
+    const mouseX = event.clientX - gameContainer.offsetLeft;
+    const mouseY = event.clientY - gameContainer.offsetTop;
+    const characterCenterX = x + character.offsetWidth / 2;
+    const characterCenterY = y + character.offsetHeight / 2;
+
+    const deltaX = mouseX - characterCenterX;
+    console.log(mouseX, characterCenterX)
+    const deltaY = mouseY - characterCenterY;
+
+    // Calculate the magnitude of the direction vector
+    const magnitude = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+    // Calculate the normalized direction vector
+    const normalizedDeltaX = deltaX / magnitude;
+    const normalizedDeltaY = deltaY / magnitude;
+
+    console.log(normalizedDeltaX, normalizedDeltaY)
+
+    return {
+        nDeltaX: normalizedDeltaX,
+        nDeltaY: normalizedDeltaY
+    };
 }
 
+function updateBullets() {
+    bullets.forEach((bullet) => {
+        if (bullet.x < 0 || bullet.x > maxX || bullet.y < 0 || bullet.y > maxY) {
+            bullet.element.remove();
+            bullets.splice(bullets.indexOf(bullet), 1);
+            return;
+        }
 
-export { updateCharacterPosition };
+        bullet.x += bullet.dx;
+        bullet.y += bullet.dy;
+        bullet.element.style.left = bullet.x + 'px';
+        bullet.element.style.top = bullet.y + 'px';
+    });
+}
+
+export { updateCharacterPosition, updateBullets };
