@@ -1,6 +1,6 @@
 import { updateCharacterPosition } from '../character/character.js';
 
-const gameTickInterval = 1000 / 30; // 30 game ticks per second
+const gameTickInterval = 1000 / 30; // 60 game ticks per second
 
 let previousTimestamp = 0;
 let accumulatedTime = 0;

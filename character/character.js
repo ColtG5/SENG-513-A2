@@ -1,7 +1,12 @@
 const character = document.getElementById('character');
 const gameContainer = document.getElementById('game-container');
 
-const movementSpeed = 4;
+// --------------------------- MOVEMENT ---------------------------
+
+const movementSpeed = 5;
+const maxX = gameContainer.offsetWidth - character.offsetWidth;
+console.log(maxX)
+const maxY = gameContainer.offsetHeight - character.offsetHeight;
 let x = character.offsetLeft;;
 let y = character.offsetTop;;
 let dx = 0;
@@ -28,6 +33,13 @@ function updateCharacterPosition() {
     }
 
     updateCharacterOrientation(dx, dy);
+
+    if ((x + dx < 0) || (x + dx > maxX)) {
+        dx = 0;
+    }
+    if ((y + dy < 0) || (y + dy > maxY)) {
+        dy = 0;
+    }
 
     x += dx;
     y += dy;
@@ -81,15 +93,33 @@ const keyStates = {};
 
 window.addEventListener('keydown', (e) => {
     keyStates[e.key] = true;
+    // console.log(e.key)
 });
 
 document.addEventListener('keyup', (e) => {
     keyStates[e.key] = false;
 });
 
-// Get the left position in pixels
-const leftPosition = character.offsetLeft;
+// --------------------------- SHOOTING ---------------------------
 
-console.log(`Left position: ${leftPosition}px`);
+const bulletSpeed = 10;
+
+function didShoot() {
+
+}
+
+function shoot() {
+    const bullet = document.createElement('div');
+    bullet.classList.add('bullet');
+    bullet.style.left = x + 'px';
+    bullet.style.top = y + 'px';
+    bullet.style.width = '10px';
+    bullet.style.height = '10px';
+    bullet.style.backgroundColor = 'blue';
+    gameContainer.appendChild(bullet);
+
+    
+}
+
 
 export { updateCharacterPosition };
