@@ -1,0 +1,43 @@
+#character {
+    background-image: url("../assets/goob_big_eyes.png");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    /* transition: transform 0.1s ease; */
+}
+
+.character-up {
+    transform: scaleY(-1);
+}
+
+.character-down {
+    transform: scaleY(1);
+}
+
+.character-left {
+    transform: scaleX(1);
+}
+
+.character-right {
+    transform: scaleX(-1);
+}
+
+.character-up-left {
+    transform: scaleX(1) scaleY(-1);
+}
+
+.character-up-right {
+    transform: scaleX(-1) scaleY(-1);
+}
+
+.character-down-left {
+    transform: scaleX(1) scaleY(1);
+}
+
+.character-down-right {
+    transform: scaleX(-1) scaleY(1);
+}

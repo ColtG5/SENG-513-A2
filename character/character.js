@@ -1,7 +1,7 @@
 const character = document.getElementById('character');
 const gameContainer = document.getElementById('game-container');
 
-const movementSpeed = 3;
+const movementSpeed = 4;
 let x = character.offsetLeft;;
 let y = character.offsetTop;;
 let dx = 0;

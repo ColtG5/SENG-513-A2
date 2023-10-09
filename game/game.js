@@ -1,4 +1,4 @@
-import { updateCharacterPosition } from './character.js';
+import { updateCharacterPosition } from '../character/character.js';
 
 const gameTickInterval = 1000 / 30; // 30 game ticks per second
 
