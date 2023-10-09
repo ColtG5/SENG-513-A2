@@ -7,6 +7,9 @@ let y = character.offsetTop;;
 let dx = 0;
 let dy = 0;
 
+let orient = "down-right"
+let lastOrientation = "down-right"
+
 function updateCharacterPosition() {
     if (isKeyDown('w')) {
         dy = -movementSpeed;
@@ -24,10 +27,49 @@ function updateCharacterPosition() {
         dx = 0;
     }
 
+    updateCharacterOrientation(dx, dy);
+
     x += dx;
     y += dy;
     character.style.left = x + 'px';
     character.style.top = y + 'px';
+}
+
+function updateCharacterOrientation(dx, dy) {
+    if (dx === 0 && dy === 0) {
+        return;
+    }
+
+    if (dx > 0) {
+        if (dy > 0) {
+            orient = "down-right";
+        } else if (dy < 0) {
+            orient = "up-right";
+        } else {
+            orient = "right";
+        }
+    } else if (dx < 0) {
+        if (dy > 0) {
+            orient = "down-left";
+        } else if (dy < 0) {
+            orient = "up-left";
+        } else {
+            orient = "left";
+        }
+    } else {
+        if (dy > 0) {
+            orient = "down";
+        } else if (dy < 0) {
+            orient = "up";
+        }
+    }
+
+    if (orient !== lastOrientation) {
+        console.log(orient)
+        character.classList.remove("character-" + lastOrientation);
+        character.classList.add("character-" + orient);
+        lastOrientation = orient;
+    }
 }
 
 // Helper function to check if a key is down
