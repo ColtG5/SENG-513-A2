@@ -4,9 +4,9 @@ const gameContainer = document.getElementById('game-container');
 // --------------------------- MOVEMENT ---------------------------
 
 const movementSpeed = 5;
-const maxX = gameContainer.offsetWidth - character.offsetWidth;
-console.log(maxX)
-const maxY = gameContainer.offsetHeight - character.offsetHeight;
+const maxX = gameContainer.offsetWidth;
+// console.log(maxX)
+const maxY = gameContainer.offsetHeight;
 let x = character.offsetLeft;;
 let y = character.offsetTop;;
 let dx = 0;
@@ -27,7 +27,7 @@ function updateCharacterPosition() {
     if (isKeyDown('a')) {
         dx = -movementSpeed;
     } else if (isKeyDown('d')) {
-        console.log('hehe');
+        // console.log('hehe');
         dx = movementSpeed;
     } else {
         dx = 0;
@@ -35,10 +35,10 @@ function updateCharacterPosition() {
 
     updateCharacterOrientation(dx, dy);
 
-    if ((x + dx < 0) || (x + dx > maxX)) {
+    if ((x + dx < 0) || (x + dx > maxX - character.offsetWidth)) {
         dx = 0;
     }
-    if ((y + dy < 0) || (y + dy > maxY)) {
+    if ((y + dy < 0) || (y + dy > maxY - character.offsetHeight)) {
         dy = 0;
     }
 
@@ -79,7 +79,7 @@ function updateCharacterOrientation(dx, dy) {
     }
 
     if (orient !== lastOrientation) {
-        console.log(orient)
+        // console.log(orient)
         character.classList.remove("character-" + lastOrientation);
         character.classList.add("character-" + orient);
         lastOrientation = orient;
@@ -121,8 +121,8 @@ gameContainer.addEventListener('click', function(event) {
 
     const bulletStartX = (x + (character.offsetWidth / 2) + nDeltaX * seperationFromCharacter) - bulletWidth / 2;
     const bulletStartY = (y + (character.offsetHeight / 2) + nDeltaY * seperationFromCharacter) - bulletHeight / 2;
-    console.log(nDeltaX, nDeltaY)
-    console.log(bulletStartX, bulletStartY);
+    // console.log(nDeltaX, nDeltaY)
+    // console.log(bulletStartX, bulletStartY);
 
     console.log('shoot fr fr')
     const bullet = document.createElement('div');
@@ -143,7 +143,10 @@ gameContainer.addEventListener('click', function(event) {
         dx: nDeltaX * bulletSpeed,
         dy: nDeltaY * bulletSpeed
     });
-    console.log(bullets);
+    // console.log(bullets);
+
+    gunImage();
+
 });
 
 function bulletDirection(event) {
@@ -154,7 +157,7 @@ function bulletDirection(event) {
     const characterCenterY = y + character.offsetHeight / 2;
 
     const deltaX = mouseX - characterCenterX;
-    console.log(mouseX, characterCenterX)
+    // console.log(mouseX, characterCenterX)
     const deltaY = mouseY - characterCenterY;
 
     // Calculate the magnitude of the direction vector
@@ -164,7 +167,7 @@ function bulletDirection(event) {
     const normalizedDeltaX = deltaX / magnitude;
     const normalizedDeltaY = deltaY / magnitude;
 
-    console.log(normalizedDeltaX, normalizedDeltaY)
+    // console.log(normalizedDeltaX, normalizedDeltaY)
 
     return {
         nDeltaX: normalizedDeltaX,
@@ -172,9 +175,34 @@ function bulletDirection(event) {
     };
 }
 
+function gunImage() {
+    console.log("gun image");
+    let alternateImage = document.createElement('img');
+    alternateImage.src = 'assets/GOOB_GUN.png';
+    alternateImage.width = character.offsetWidth;
+    alternateImage.height = character.offsetHeight;
+    alternateImage.style.position = 'absolute';
+    alternateImage.style.left = 0;
+    alternateImage.style.top = 0;
+    alternateImage.style.display = 'block';
+
+    character.style.backgroundImage = 'none';
+    character.appendChild(alternateImage);
+    setTimeout(() => {
+        character.removeChild(alternateImage);
+        character.style.backgroundImage = 'url(assets/goob_big_eyes.png)';
+        console.log("gun image removed");
+    }, 500);
+}
+
 function updateBullets() {
     bullets.forEach((bullet) => {
-        if (bullet.x < 0 || bullet.x > maxX || bullet.y < 0 || bullet.y > maxY) {
+        const bulletLeft = bullet.x;
+        const bulletRight = bullet.x + bulletWidth;
+        const bulletTop = bullet.y;
+        const bulletBottom = bullet.y + bulletHeight;
+
+        if (bulletLeft < 0 || bulletRight > maxX || bulletTop < 0 || bulletBottom > maxY ) {
             bullet.element.remove();
             bullets.splice(bullets.indexOf(bullet), 1);
             return;
