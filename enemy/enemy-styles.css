@@ -1,0 +1,12 @@
+.zombie {
+    background-image: url(../images/zombie.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 60px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: zombie 1s steps(4) infinite;
+}
