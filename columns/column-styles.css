@@ -15,7 +15,8 @@
     color: white;
     background-color: #3352FF;
     padding-left: 1rem;
-
+    box-shadow: 0 0 12px black;
+    text-shadow: 1px 1px 1px black;
 }
 
 .left-column h1,
@@ -25,5 +26,5 @@
     /* margin: 0;
     padding: 0.5rem; */
     /* background-color: #3C2B00; */
-    text-shadow: 1px 1px 1px lightblue;
+    text-shadow: 1px 1px 4px black;
 }
