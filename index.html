@@ -3,20 +3,34 @@
 <head>
     <link rel="stylesheet" href="game/game-styles.css">
     <link rel="stylesheet" href="character/character-styles.css">
+    <link rel="stylesheet" href="columns/column-styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Goob</title>
 </head>
 <body>
     <div id="background">
+        <div class="left-column">
+            <h1>Introduction</h1>
+            <h3>Welcome to Goob!</h3><br>
+            Some basic instructions:
+            <ul>
+                <li><p>Use WASD to move Goob around<p></li>
+                <li><p>Hold SHIFT and left-click to shoot!</p></li>
+            </ul>
+        </div>
         <div id="game-container">
-            <p>wasd to move</p>
-            <p>hold SHIFT and left click to shoot</p>
-            <p>(refresh if you change screen size)</p>
             <div id="character"></div>
+        </div>
+        <div class="right-column">
+            <h1>Goob Fun Facts:</h1>
+            <ul style="align-items: center;">
+                <li><p>Goob has a cousin named Loob!</p></li>
+            </ul>
         </div>
     </div>
     <script type="module" src="game/game.js"></script>
     <script type="module" src="character/character.js"></script>
+    <script type="module" src="utility.js"></script>
 </body>
 </html>

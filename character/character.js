@@ -90,14 +90,6 @@ function isKeyDown(key) {
     return keyStates[key] === true;
 }
 
-// function resetKeyStates() {
-//     for (const key in keyStates) {
-//         if (keyStates.hasOwnProperty(key)) {
-//             keyStates[key] = false;
-//         }
-//     }
-// }
-
 const keyStates = {};
 
 window.addEventListener('keydown', (e) => {
@@ -130,12 +122,17 @@ gameContainer.addEventListener('click', (event) => {
     createBullet(event);
 });
 
+let onWindow = true;
+
 window.onfocus = function (ev) {
     console.log("gained focus");
+    onWindow = true;
+
 };
 
 
 window.onblur = function (ev) {
+    onWindow = false;
     console.log("lost focus");
     resetKeyStates();
 };
@@ -149,7 +146,7 @@ window.onblur = function (ev) {
 // });
 
 function createBullet(event) {
-    if (!isKeyDown('shift')) {
+    if (!isKeyDown('shift') || onWindow === false) {
         return;
     }
 

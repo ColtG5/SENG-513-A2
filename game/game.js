@@ -1,4 +1,5 @@
 import { updateCharacterPosition, updateBullets } from '../character/character.js';
+import { squareGameGridChecker } from '../utility.js'
 
 const gameTickInterval = 1000 / 30; // 30 game ticks per second
 
@@ -13,6 +14,7 @@ function updateGame() {
 
 function renderGame() {
     updateBullets();
+    squareGameGridChecker();
 }
 
 

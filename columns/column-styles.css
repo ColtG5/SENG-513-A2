@@ -1,0 +1,29 @@
+.left-column, .right-column {
+    /* display: flex; */
+
+    align-items: center;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* width: 50%;
+    height: 100%; */
+    /* position: absolute; */
+    /* top: 0; */
+    /* overflow: hidden; */
+    /* min-width: 20rem; */
+    width: 20vw;
+    height: 95vh;
+    color: white;
+    background-color: #3352FF;
+    padding-left: 1rem;
+
+}
+
+.left-column h1,
+.right-column h1 {
+    /* font-size: 5rem; */
+    text-align: center;
+    /* margin: 0;
+    padding: 0.5rem; */
+    /* background-color: #3C2B00; */
+    text-shadow: 1px 1px 1px lightblue;
+}
