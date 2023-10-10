@@ -1,12 +1,14 @@
-function Enemy(type, hp, attack, defense, speed, xp, money, image) {
-    this.type = type;
-    this.hp = hp;
-    this.attack = attack;
-    this.defense = defense;
-    this.speed = speed;
-    this.xp = xp;
-    this.money = money;
-    this.image = image;
+class Enemy {
+    constructor(type, hp, attack, defense, speed, xp, money, image) {
+        this.type = type;
+        this.hp = hp;
+        this.attack = attack;
+        this.defense = defense;
+        this.speed = speed;
+        this.xp = xp;
+        this.money = money;
+        this.image = image;
+    }
 }
 
 function createZombie() {

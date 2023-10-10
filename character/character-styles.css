@@ -45,3 +45,7 @@
 .character-no-transform {
     transform: none;
 }
+
+/* .character-walking {
+    animation: character-walk 0.5s steps(4) infinite;
+} */
