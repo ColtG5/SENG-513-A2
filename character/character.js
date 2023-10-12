@@ -146,7 +146,11 @@ window.onblur = function (ev) {
 // });
 
 function createBullet(event) {
-    if (!isKeyDown('shift') || onWindow === false) {
+    // if (!isKeyDown('shift') || onWindow === false) {
+    //     return;
+    // }
+
+    if (onWindow === false) {
         return;
     }
 
