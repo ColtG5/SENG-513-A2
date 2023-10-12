@@ -6,14 +6,14 @@ const gameTickInterval = 1000 / 30; // 30 game ticks per second
 let previousTimestamp = 0;
 let accumulatedTime = 0;
 
-function updateGame() {
+function updateGame(accumulatedTime, timestamp, gameTickInterval) {
     updateCharacterPosition();
-
+    updateBullets();
+    console.log(`${accumulatedTime} ${timestamp} ${gameTickInterval}`)
     // resetKeyStates();
 }
 
 function renderGame() {
-    updateBullets();
     squareGameGridChecker();
 }
 
@@ -30,9 +30,11 @@ function gameLoop(timestamp) {
 
     // Update the game logic in fixed time steps
     while (accumulatedTime >= gameTickInterval) {
-        updateGame(); // Your game logic goes here
+        updateGame(accumulatedTime, timestamp, gameTickInterval); // Your game logic goes here
         accumulatedTime -= gameTickInterval;
     }
+
+    // console.log(`I'm here rn:   ${accumulatedTime} ${timestamp} ${gameTickInterval}`)
 
     // Render the game
     renderGame(); // Your rendering code goes here

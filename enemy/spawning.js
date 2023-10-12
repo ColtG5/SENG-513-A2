@@ -1,10 +1,9 @@
 import { createZombie } from './enemy.js';
 
+let enemies = []
+
+
 function spawnZombie() {
     let enemy = createZombie();
     return enemy;
-}
-
-function spawnAfterFiveSeconds() {
-    setTimeout(spawnZombie, 5000);
 }

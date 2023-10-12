@@ -94,7 +94,7 @@ const keyStates = {};
 
 window.addEventListener('keydown', (e) => {
     keyStates[e.key.toLocaleLowerCase()] = true;
-    console.log(e.key)
+    // console.log(e.key)
 });
 
 document.addEventListener('keyup', (e) => {
