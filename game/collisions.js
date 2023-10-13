@@ -21,6 +21,28 @@ function checkCollisions(array1, array2, funcIfCollided) {
     }
 }
 
+function isColliding(elm1, elm2) {
+    const elm1Left = elm1.element.offsetLeft;
+    const elm1Right = elm1Left + elm1.element.offsetWidth;
+    const elm1Top = elm1.element.offsetTop;
+    const elm1Bottom = elm1Top + elm1.element.offsetHeight;
+
+    console.log(`elm1Left: ${elm1Left}, elm1Right: ${elm1Right}, elm1Top: ${elm1Top}, elm1Bottom: ${elm1Bottom}`)
+
+    const elm2Left = elm2.element.offsetLeft;
+    const elm2Right = elm2Left + elm2.element.offsetWidth;
+    const elm2Top = elm2.element.offsetTop;
+    const elm2Bottom = elm2Top + elm2.element.offsetHeight;
+
+    console.log(`elm2Left: ${elm2Left}, elm2Right: ${elm2Right}, elm2Top: ${elm2Top}, elm2Bottom: ${elm2Bottom}`)
+
+    if (elm1Left < elm2Right && elm1Right > elm2Left && elm1Top < elm2Bottom && elm1Bottom > elm2Top) {
+        console.log("HERE")
+        return true;
+    }
+    return false;
+}
+
 function bulletWallCollision() {
     bullets.forEach((bullet) => {
         const bulletLeft = bullet.x;
@@ -41,6 +63,7 @@ function bulletEnemyCollision(bullet, enemy) {
     // check if bullet collides with enemy on the page
     // if it does, remove the bullet, and remove the enemy
     // console.log("collided")
+    console.log("HERE")
     bullet.element.remove();
     bullets.splice(bullets.indexOf(bullet), 1);
     enemy.element.remove();

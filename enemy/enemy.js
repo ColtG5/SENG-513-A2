@@ -8,11 +8,16 @@ class Enemy {
         this.xp = xp;
         this.money = money;
         this.image = image;
+        this.element = document.createElement('div');
+        this.element.classList.add('zombie');
     }
 }
 
 function createZombie() {
-    return new Enemy("zombie", 100, 5, 2, 10, 10, 10, "assets/zombie.png");
+    let zombie = new Enemy("zombie", 100, 5, 2, 10, 10, 10, "assets/zombie.png");
+    zombie.element.classList.add('zombie');
+    // console.log(zombie.element)
+    return zombie;
 }
 
 export { createZombie }

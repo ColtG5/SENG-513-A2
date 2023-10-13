@@ -110,7 +110,7 @@ function resetKeyStates() {
 
 // --------------------------- SHOOTING ---------------------------
 
-const bulletSpeed = 8;
+const bulletSpeed = 10;
 const bulletWidth = 10;
 const bulletHeight = 10;
 const seperationFromCharacter = 30;
