@@ -1,7 +1,7 @@
 .rotate {
-    -webkit-transform: rotate(360deg);
-    -webkit-transition-duration: 1s;
-    -webkit-transition-delay: now;
+    transform: rotate(360deg);
+    transition-duration: 1s;
+    transition-delay: now;
     /* -webkit-animation-timing-function: linear;
     -webkit-animation-iteration-count: infinite; */
 }
