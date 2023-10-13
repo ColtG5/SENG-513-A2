@@ -117,7 +117,7 @@ const seperationFromCharacter = 30;
 
 let bullets = [];
 
-gameContainer.addEventListener('click', (event) => {
+gameContainer.addEventListener('mousedown', (event) => {
     // checkOutOfBoundsClick(event);
     createBullet(event);
 });

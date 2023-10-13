@@ -9,7 +9,7 @@ let accumulatedTime = 0;
 function updateGame(accumulatedTime, timestamp, gameTickInterval) {
     updateCharacterPosition();
     updateBullets();
-    console.log(`${accumulatedTime} ${timestamp} ${gameTickInterval}`)
+    // console.log(`${accumulatedTime} ${timestamp} ${gameTickInterval}`)
     // resetKeyStates();
 }
 
