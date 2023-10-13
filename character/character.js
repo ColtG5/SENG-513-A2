@@ -110,7 +110,7 @@ function resetKeyStates() {
 
 // --------------------------- SHOOTING ---------------------------
 
-const bulletSpeed = 8;
+const bulletSpeed = 10;
 const bulletWidth = 10;
 const bulletHeight = 10;
 const seperationFromCharacter = 30;
@@ -248,17 +248,6 @@ function gunImage() {
 
 function updateBullets() {
     bullets.forEach((bullet) => {
-        const bulletLeft = bullet.x;
-        const bulletRight = bullet.x + bulletWidth;
-        const bulletTop = bullet.y;
-        const bulletBottom = bullet.y + bulletHeight;
-
-        if (bulletLeft < 0 || bulletRight > maxX || bulletTop < 0 || bulletBottom > maxY ) {
-            bullet.element.remove();
-            bullets.splice(bullets.indexOf(bullet), 1);
-            return;
-        }
-
         bullet.x += bullet.dx;
         bullet.y += bullet.dy;
         bullet.element.style.left = bullet.x + 'px';
@@ -266,4 +255,4 @@ function updateBullets() {
     });
 }
 
-export { updateCharacterPosition, updateBullets };
+export { updateCharacterPosition, updateBullets, bullets, bulletHeight, bulletWidth };
