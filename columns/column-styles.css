@@ -33,3 +33,20 @@ ul {
     /* background-color: #3C2B00; */
     text-shadow: 1px 1px 4px black;
 }
+
+/* button {
+    margin: initial;
+} */
+
+#music-toggle-button {
+    /* make the button lighter blue than the column background, and push it to the bottom of its column (using margin??) */
+    background-color: #71C9FF;
+    margin-top: auto;
+    position: bottom;
+    margin-bottom: auto;
+    /* margin-left: 1rem; */
+    /* margin-right: 1rem; */
+    /* padding: 0.5rem; */
+    border: 1px solid black;
+    /* border-radius: 0.5rem; */
+}

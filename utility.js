@@ -11,5 +11,20 @@ function squareGameGridChecker() {
     }
 }
 
+function toggleMusic() {
+    var audio = document.getElementById("background-music");
+    audio.volume = 0.1;
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
+    }
+    console.log("toggled music")
+}
 
-export { squareGameGridChecker }
+document.getElementById("music-toggle-button").addEventListener("click", function() {
+    toggleMusic();
+});
+
+
+export { squareGameGridChecker, toggleMusic }
