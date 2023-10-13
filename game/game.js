@@ -1,5 +1,6 @@
 import { updateCharacterPosition, updateBullets } from '../character/character.js';
 import { squareGameGridChecker } from '../utility.js'
+import { collisionsToCheck } from './collisions.js';
 
 const gameTickInterval = 1000 / 30; // 30 game ticks per second
 
@@ -11,6 +12,8 @@ function updateGame(accumulatedTime, timestamp, gameTickInterval) {
     updateBullets();
     // console.log(`${accumulatedTime} ${timestamp} ${gameTickInterval}`)
     // resetKeyStates();
+
+    collisionsToCheck();
 }
 
 function renderGame() {

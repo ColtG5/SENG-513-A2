@@ -1,2 +1,0 @@
-bullets = []
-enemies = []

@@ -7,3 +7,5 @@ function spawnZombie() {
     let enemy = createZombie();
     return enemy;
 }
+
+export { spawnZombie, enemies }
