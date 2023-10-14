@@ -8,5 +8,6 @@
     position: absolute;
     top: 5%;
     left: 5%;
-    animation: zombie 1s steps(4) infinite;
+    transform: initial;
+    /* animation: zombie 1s steps(4) infinite; */
 }

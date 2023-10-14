@@ -5,15 +5,10 @@ const gameContainer = document.getElementById('game-container');
 let enemies = []
 
 function spawnZombie() {
-    if (enemies.length > 15) {
+    if (enemies.length > 0) {
         return;
     }
     let enemy = createZombie();
-    // console.log(gameContainer.offsetHeight)
-    // console.log(enemy.element.clientHeight)
-    // console.log(gameContainer.offsetHeight - enemy.element.offsetHeight)
-
-
     gameContainer.appendChild(enemy.element);
 
     enemy.element.style.top = Math.floor(Math.random() * (gameContainer.offsetHeight - enemy.element.offsetHeight)) + 'px';

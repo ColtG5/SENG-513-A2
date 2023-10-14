@@ -48,6 +48,7 @@ function isColliding(elm1, elm2) {
 
     // console.log(`elm1Left: ${elm1Left}, elm1Right: ${elm1Right}, elm1Top: ${elm1Top}, elm1Bottom: ${elm1Bottom}`)
 
+    console.log(elm2.element.offsetLeft, elm2.element.offsetWidth)
     const elm2Left = elm2.element.offsetLeft;
     const elm2Right = elm2Left + elm2.element.offsetWidth;
     const elm2Top = elm2.element.offsetTop;
@@ -71,7 +72,16 @@ function bulletEnemyCollision(bullet, enemy) {
     bullets.splice(bullets.indexOf(bullet), 1);
     enemy.element.remove();
     enemies.splice(enemies.indexOf(enemy), 1);
+
+    if (enemy.hp - bullet.damage < 10)  {
+        enemy.hp = 0;
+        console.log("enemy dead")
+        console.log(enemy.hp)
+    } else {
+        enemy.hp -= bullet.damage;
+        console.log(enemy.hp)
+    }
 }
 
 
-export { collisionsToCheck }
+export { collisionsToCheck, isColliding }

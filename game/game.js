@@ -24,6 +24,7 @@ function renderGame() {
 }
 
 
+
 // The game loop code was taken fron ChatGPT 
 
 function gameLoop(timestamp) {

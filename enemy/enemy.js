@@ -10,11 +10,13 @@ class Enemy {
         this.image = image;
         this.element = document.createElement('div');
         this.element.classList.add('zombie');
+        this.tx = 0;
+        this.ty = 0;
     }
 }
 
 function createZombie() {
-    let zombie = new Enemy("zombie", 100, 5, 2, 10, 10, 10, "assets/zombie.png");
+    let zombie = new Enemy("zombie", 100, 5, 2, 3, 1, 10, "assets/zombie.png");
     // zombie.element.classList.add('zombie');
     // console.log(zombie.element)
     return zombie;
