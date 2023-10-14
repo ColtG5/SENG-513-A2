@@ -1,7 +1,8 @@
-import { bullets, bulletHeight, bulletWidth } from "../character/character.js";
-import { enemies } from "../enemy/spawning.js";
+import { enemies } from "../enemy/enemy-spawning.js";
+import { bullets } from "../weapons/weapon-spawning.js";
 
 const gameContainer = document.getElementById('game-container');
+const character = document.getElementById('character');
 
 const maxX = gameContainer.offsetWidth;
 const maxY = gameContainer.offsetHeight;
@@ -20,6 +21,24 @@ function checkCollisions(array1, array2, funcIfCollided) {
         }
     }
 }
+
+function bulletWallCollision() {
+    bullets.forEach((bullet) => {
+        const bulletLeft = bullet.element.offsetLeft;
+        const bulletRight = bulletLeft + bullet.element.offsetWidth;
+        const bulletTop = bullet.element.offsetTop;
+        const bulletBottom = bulletTop + bullet.element.offsetHeight;
+
+        if (bulletLeft < 0 || bulletRight > maxX || bulletTop < 0 || bulletBottom > maxY ) {
+            bullet.element.remove();
+            bullets.splice(bullets.indexOf(bullet), 1);
+            console.log("bullet removed")
+            return;
+        }
+    });
+}
+
+
 
 function isColliding(elm1, elm2) {
     const elm1Left = elm1.element.offsetLeft;
@@ -43,21 +62,6 @@ function isColliding(elm1, elm2) {
     return false;
 }
 
-function bulletWallCollision() {
-    bullets.forEach((bullet) => {
-        const bulletLeft = bullet.x;
-        const bulletRight = bullet.x + bulletWidth;
-        const bulletTop = bullet.y;
-        const bulletBottom = bullet.y + bulletHeight;
-
-        if (bulletLeft < 0 || bulletRight > maxX || bulletTop < 0 || bulletBottom > maxY ) {
-            bullet.element.remove();
-            bullets.splice(bullets.indexOf(bullet), 1);
-            return;
-        }
-    });
-}
-
 function bulletEnemyCollision(bullet, enemy) {
     // check if bullet collides with enemy on the page
     // if it does, remove the bullet, and remove the enemy
@@ -68,5 +72,6 @@ function bulletEnemyCollision(bullet, enemy) {
     enemy.element.remove();
     enemies.splice(enemies.indexOf(enemy), 1);
 }
+
 
 export { collisionsToCheck }

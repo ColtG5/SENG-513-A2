@@ -7,8 +7,8 @@ const movementSpeed = 5;
 const maxX = gameContainer.offsetWidth;
 // console.log(maxX)
 const maxY = gameContainer.offsetHeight;
-let x = character.offsetLeft;;
-let y = character.offsetTop;;
+let x = character.offsetLeft;
+let y = character.offsetTop;
 let dx = 0;
 let dy = 0;
 
@@ -110,33 +110,6 @@ function resetKeyStates() {
 
 // --------------------------- SHOOTING ---------------------------
 
-const bulletSpeed = 10;
-const bulletWidth = 10;
-const bulletHeight = 10;
-const seperationFromCharacter = 30;
-
-let bullets = [];
-
-gameContainer.addEventListener('mousedown', (event) => {
-    // checkOutOfBoundsClick(event);
-    createBullet(event);
-});
-
-let onWindow = true;
-
-window.onfocus = function (ev) {
-    console.log("gained focus");
-    onWindow = true;
-
-};
-
-
-window.onblur = function (ev) {
-    onWindow = false;
-    console.log("lost focus");
-    resetKeyStates();
-};
-
 // document.addEventListener("visibilitychange", (event) => {
 //     if (document.visibilityState == "visible") {
 //         console.log("tab is active")
@@ -150,18 +123,16 @@ function createBullet(event) {
     //     return;
     // }
 
-    if (onWindow === false) {
-        return;
-    }
+    // if (onWindow === false) {
+    //     return;
+    // }
 
-    let { nDeltaX, nDeltaY } = bulletDirection(event);
-
-    const bulletStartX = (x + (character.offsetWidth / 2) + nDeltaX * seperationFromCharacter) - bulletWidth / 2;
-    const bulletStartY = (y + (character.offsetHeight / 2) + nDeltaY * seperationFromCharacter) - bulletHeight / 2;
+    // const bulletStartX = (x + (character.offsetWidth / 2) * seperationFromCharacter) - bulletWidth / 2;
+    // const bulletStartY = (y + (character.offsetHeight / 2) * seperationFromCharacter) - bulletHeight / 2;
     // console.log(nDeltaX, nDeltaY)
     // console.log(bulletStartX, bulletStartY);
 
-    console.log('shoot fr fr')
+    // console.log('shoot fr fr')
     const bullet = document.createElement('div');
     bullet.classList.add('bullet');
     // console.log(x, y);
@@ -173,42 +144,10 @@ function createBullet(event) {
     bullet.style.backgroundColor = '#32BEFF';
     bullet.style.borderRadius = '50%';
     gameContainer.appendChild(bullet);
-    bullets.push({
-        element: bullet,
-        x: bulletStartX,
-        y: bulletStartY,
-        dx: nDeltaX * bulletSpeed,
-        dy: nDeltaY * bulletSpeed
-    });
+    // bullets.push(bullet);
     // console.log(bullets);
 
     gunImage();
-}
-
-function bulletDirection(event) {
-    // Calculate the direction vector from character to mouse pointer
-    const mouseX = event.clientX - gameContainer.offsetLeft;
-    const mouseY = event.clientY - gameContainer.offsetTop;
-    const characterCenterX = x + character.offsetWidth / 2;
-    const characterCenterY = y + character.offsetHeight / 2;
-
-    const deltaX = mouseX - characterCenterX;
-    // console.log(mouseX, characterCenterX)
-    const deltaY = mouseY - characterCenterY;
-
-    // Calculate the magnitude of the direction vector
-    const magnitude = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-
-    // Calculate the normalized direction vector
-    const normalizedDeltaX = deltaX / magnitude;
-    const normalizedDeltaY = deltaY / magnitude;
-
-    // console.log(normalizedDeltaX, normalizedDeltaY)
-
-    return {
-        nDeltaX: normalizedDeltaX,
-        nDeltaY: normalizedDeltaY
-    };
 }
 
 let gunImageCounter = 0;
@@ -246,13 +185,4 @@ function gunImage() {
     }, 300);
 }
 
-function updateBullets() {
-    bullets.forEach((bullet) => {
-        bullet.x += bullet.dx;
-        bullet.y += bullet.dy;
-        bullet.element.style.left = bullet.x + 'px';
-        bullet.element.style.top = bullet.y + 'px';
-    });
-}
-
-export { updateCharacterPosition, updateBullets, bullets, bulletHeight, bulletWidth };
+export { updateCharacterPosition, gunImage, resetKeyStates };

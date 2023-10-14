@@ -9,6 +9,15 @@ function spawnZombie() {
         return;
     }
     let enemy = createZombie();
+    // console.log(gameContainer.offsetHeight)
+    // console.log(enemy.element.clientHeight)
+    // console.log(gameContainer.offsetHeight - enemy.element.offsetHeight)
+    
+    console.log(`height: ${enemy.element.offsetHeight}, width: ${enemy.element.offsetWidth}`)
+
+    enemy.element.style.top = Math.floor(Math.random() * (gameContainer.offsetHeight - enemy.element.offsetHeight)) + 'px';
+    enemy.element.style.left = Math.floor(Math.random() * (gameContainer.offsetWidth - enemy.element.offsetWidth)) + 'px';
+
     gameContainer.appendChild(enemy.element);
     enemies.push(enemy);
     // console.log(`Spawned a ${enemy.type}. ${enemies}`)
@@ -16,8 +25,6 @@ function spawnZombie() {
     // console.log(enemy.element.offsetLeft)
 
     // set the top and left properties of the zombie to a random posotion valid inside the game container
-    enemy.element.style.top = Math.floor(Math.random() * (gameContainer.offsetHeight - enemy.element.offsetHeight)) + 'px';
-    enemy.element.style.left = Math.floor(Math.random() * (gameContainer.offsetWidth - enemy.element.offsetWidth)) + 'px';
 }
 
 setInterval(spawnZombie, 1000);
