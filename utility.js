@@ -13,9 +13,14 @@ function squareGameGridChecker() {
     }
 }
 
+document.getElementById("music-toggle-button").addEventListener("click", function() {
+    toggleMusic();
+});
+
 function toggleMusic() {
-    var audio = document.getElementById("background-music");
-    audio.volume = 0.5;
+    const audio = document.getElementById("background-music");
+    audio.volume = 0.2;
+    audio.currentTime = 2;
     if (audio.paused) {
         audio.play();
     } else {
@@ -23,10 +28,6 @@ function toggleMusic() {
     }
     console.log("toggled music")
 }
-
-document.getElementById("music-toggle-button").addEventListener("click", function() {
-    toggleMusic();
-});
 
 let onWindow = true;
 
