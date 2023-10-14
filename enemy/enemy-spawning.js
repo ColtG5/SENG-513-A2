@@ -5,7 +5,7 @@ const gameContainer = document.getElementById('game-container');
 let enemies = []
 
 function spawnZombie() {
-    if (enemies.length > 0) {
+    if (enemies.length > 14) {
         return;
     }
     let enemy = createZombie();
@@ -24,7 +24,7 @@ function spawnZombie() {
     // set the top and left properties of the zombie to a random posotion valid inside the game container
 }
 
-setInterval(spawnZombie, 1000);
+setInterval(spawnZombie, 1200);
 
 
 export { enemies }

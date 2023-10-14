@@ -16,7 +16,7 @@ class Enemy {
 }
 
 function createZombie() {
-    let zombie = new Enemy("zombie", 100, 5, 2, 2, 1, 10, "assets/zombie.png");
+    let zombie = new Enemy("zombie", 40, 5, 2, 2, 1, 10, "assets/zombie.png");
     // zombie.element.classList.add('zombie');
     // console.log(zombie.element)
     return zombie;

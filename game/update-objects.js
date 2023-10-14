@@ -55,10 +55,10 @@ function updateEnemies() {
     // });
     enemies.map((enemy) => {
         // const {dx, dy} = getDirectionToMove(enemy, character);
-        console.log(character.offsetLeft, character.offsetTop)
+        // console.log(character.offsetLeft, character.offsetTop)
         const dx = getDirectionToMove(enemy, character).nDeltaX * enemy.speed;
         const dy = getDirectionToMove(enemy, character).nDeltaY * enemy.speed;
-        console.log(dx, dy)
+        // console.log(dx, dy)
         let newX = enemy.element.offsetLeft + dx;
         let newY = enemy.element.offsetTop + dy;
 

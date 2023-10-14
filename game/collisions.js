@@ -10,6 +10,7 @@ const maxY = gameContainer.offsetHeight;
 function collisionsToCheck() {
     bulletWallCollision();
     checkCollisions(bullets, enemies, bulletEnemyCollision);
+    checkCollisions(enemies, [character], enemyCharacterCollision)
 }
 
 function checkCollisions(array1, array2, funcIfCollided) {
@@ -41,6 +42,9 @@ function bulletWallCollision() {
 
 
 function isColliding(elm1, elm2) {
+    if (elm2 == character) {
+        elm2 = {element: character}
+    }
     const elm1Left = elm1.element.offsetLeft;
     const elm1Right = elm1Left + elm1.element.offsetWidth;
     const elm1Top = elm1.element.offsetTop;
@@ -48,7 +52,8 @@ function isColliding(elm1, elm2) {
 
     // console.log(`elm1Left: ${elm1Left}, elm1Right: ${elm1Right}, elm1Top: ${elm1Top}, elm1Bottom: ${elm1Bottom}`)
 
-    console.log(elm2.element.offsetLeft, elm2.element.offsetWidth)
+    // console.log(elm2)
+    // console.log(elm2.element.offsetLeft, elm2.element.offsetWidth)
     const elm2Left = elm2.element.offsetLeft;
     const elm2Right = elm2Left + elm2.element.offsetWidth;
     const elm2Top = elm2.element.offsetTop;
@@ -70,17 +75,31 @@ function bulletEnemyCollision(bullet, enemy) {
     console.log("HERE")
     bullet.element.remove();
     bullets.splice(bullets.indexOf(bullet), 1);
-    enemy.element.remove();
-    enemies.splice(enemies.indexOf(enemy), 1);
 
-    if (enemy.hp - bullet.damage < 10)  {
-        enemy.hp = 0;
-        console.log("enemy dead")
-        console.log(enemy.hp)
-    } else {
-        enemy.hp -= bullet.damage;
-        console.log(enemy.hp)
+    console.log(enemy.hp)
+    console.log(bullet.damage)
+    enemy.hp -= bullet.damage;
+    console.log(enemy.hp)
+    if (enemy.hp <= 0) {
+        enemy.element.remove();
+        enemies.splice(enemies.indexOf(enemy), 1);
     }
+
+    // if (enemy.hp - bullet.damage < 10)  {
+    //     enemy.hp = 0;
+    //     console.log("enemy dead")
+    //     console.log(enemy.hp)
+    // } else {
+    //     enemy.hp -= bullet.damage;
+    //     console.log(enemy.hp)
+    // }
+}
+
+function enemyCharacterCollision(enemy, character) {
+    // check if enemy collides with character
+    // if it does, remove health from the character
+
+    
 }
 
 
