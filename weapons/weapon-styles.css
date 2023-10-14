@@ -2,6 +2,8 @@
     position: absolute;
     /* top: 50%;
     left: 5%; */
+    width: 10px;
+    height: 10px;
     background-color: #32BEFF;
     border-radius: 50%;
 }

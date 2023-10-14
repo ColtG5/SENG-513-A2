@@ -12,13 +12,15 @@ function spawnZombie() {
     // console.log(gameContainer.offsetHeight)
     // console.log(enemy.element.clientHeight)
     // console.log(gameContainer.offsetHeight - enemy.element.offsetHeight)
-    
-    console.log(`height: ${enemy.element.offsetHeight}, width: ${enemy.element.offsetWidth}`)
+
+
+    gameContainer.appendChild(enemy.element);
 
     enemy.element.style.top = Math.floor(Math.random() * (gameContainer.offsetHeight - enemy.element.offsetHeight)) + 'px';
     enemy.element.style.left = Math.floor(Math.random() * (gameContainer.offsetWidth - enemy.element.offsetWidth)) + 'px';
 
-    gameContainer.appendChild(enemy.element);
+    // console.log(`height: ${enemy.element.offsetHeight}, width: ${enemy.element.offsetWidth}`)
+
     enemies.push(enemy);
     // console.log(`Spawned a ${enemy.type}. ${enemies}`)
     // console.log(enemy.element.offsetWidth)
