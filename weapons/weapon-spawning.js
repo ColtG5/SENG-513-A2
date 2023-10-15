@@ -67,6 +67,7 @@ function spawnBullet(event) {
     bullet.element.style.top = bulletStartY + 'px';
 
     gameContainer.appendChild(bullet.element);
+    console.log(bullet)
     bullets.push(bullet);
     console.log('shoot fr fr');
     console.log(bullets);

@@ -3,9 +3,10 @@ import { createZombie } from './enemy.js';
 const gameContainer = document.getElementById('game-container');
 
 let enemies = []
+let maxNumOfZombies = 15;
 
 function spawnZombie() {
-    if (enemies.length > 14) {
+    if (enemies.length > maxNumOfZombies - 1) {
         return;
     }
     let enemy = createZombie();
@@ -24,7 +25,25 @@ function spawnZombie() {
     // set the top and left properties of the zombie to a random posotion valid inside the game container
 }
 
-setInterval(spawnZombie, 1200);
+function wave() {
+    spawnZombie();
+    spawnZombie();
+    spawnZombie();
+    spawnZombie();
+    spawnZombie();
+}
+
+function waves() {
+    console.log("waves")
+    setInterval(() => {
+        wave();
+    }, 10000);
+}
+
+setTimeout(() => {
+    wave();
+    waves();
+}, 2000);
 
 
 export { enemies }

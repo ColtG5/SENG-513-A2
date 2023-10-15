@@ -1,9 +1,11 @@
 class Bullet {
-    constructor(damage=10, speed=10) {
-        this.damage = damage;
-        this.speed = speed;
+    constructor() {
+        this.damage = 10;
+        this.speed = 10;
         this.dx = 0;
         this.dy = 0;
+        this.health = 10;
+        this.enemiesHit = [];
         this.element = document.createElement('div');
         this.element.classList.add('bullet');
     }
@@ -14,6 +16,7 @@ class Bullet {
 
 function createBullet() {
     let bullet = new Bullet();
+    console.log(bullet)
     // bullet.element.classList.add('bullet');
     // console.log(zombie.element)
     return bullet;

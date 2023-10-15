@@ -65,7 +65,7 @@ function updateEnemies() {
         // console.log(enemy.element.offsetLeft, enemy.element.offsetTop);
 
         if (isColliding(enemy, {element: character})) {
-            console.log("collided")
+            // console.log("collided, not moving closer!")
             return
         }
 
