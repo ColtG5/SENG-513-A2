@@ -4,10 +4,11 @@ ul {
 }
 
 .left-column, .right-column {
-    /* display: flex; */
+    display: flex;
 
-    align-items: center;
+    /* align-items: center; */
     flex-direction: column;
+    /* position: relative; */
     /* justify-content: center; */
     /* width: 50%;
     height: 100%; */
@@ -38,15 +39,38 @@ ul {
     margin: initial;
 } */
 
+.right-column #music-toggle-button {
+    justify-content: center;
+    align-items: center;
+}
+
 #music-toggle-button {
     /* make the button lighter blue than the column background, and push it to the bottom of its column (using margin??) */
-    background-color: #71C9FF;
-    margin-top: auto;
-    position: bottom;
-    margin-bottom: auto;
+    background-color: #30b0ff;
+    color: white;
+    text-shadow: 1px 1px 4px black;
+    margin-top: 1rem;
+    /* margin-left: 27%; */
+    width: 30%;
+    height: 5%;
+    /* margin-top: auto; */
+    /* position: bottom; */
+    /* align-self: flex-end; */
+    /* margin-bottom: auto; */
     /* margin-left: 1rem; */
     /* margin-right: 1rem; */
     /* padding: 0.5rem; */
-    border: 1px solid black;
+    /* margin-top: 100%; */
+    border: 3px outset rgb(0, 38, 255);
+    border-radius: 10px;
     /* border-radius: 0.5rem; */
+}
+
+#music-toggle-button:hover {
+    background-color: #2980b9;
+}
+
+#music-toggle-button:active {
+    background-color: #2078b5;
+    transform: translateY(2px);
 }

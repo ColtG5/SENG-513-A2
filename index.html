@@ -22,28 +22,30 @@
                 <li><p>Left-click to shoot!</p></li>
                 <li><p>(Refresh the page if you resize the window)</p></li>
             </ul>
+            <audio id="background-music" loop>
+                <source src="assets\Bury-the-Light-(Kazoo Cover).mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <button id="music-toggle-button">Toggle Music</button>
         </div>
         <div id="game-container">
             <div id="character"></div>
+            <div id="wave-text">ROUND 0</div>
+            <div id="wave-counter"></div>
         </div>
         <div class="right-column">
             <h1>Goob Fun Facts:</h1>
             <ul style="align-items: center;">
                 <li>
                     <div style="display: flex; align-items: center;">
-                        <p>Goob has a cousin named Loob! (canon in SENG universe)</p><br>
-                        <img id="column-loob"src="assets\loob.png" style="width: 50px; height: 70px; text-align: center;">
+                        <p>Goob has a cousin named Loob!</p><br>
+                        <img id="column-loob"src="assets\loob.png" style="width: 50px; height: 70px; margin-left: auto; margin-right: auto;">
                         <!-- <div style="display: flex; justify-content: center;">
                             <img src="assets\loob.png" style="width: 50px; height: auto; text-align: center;"></p>
                         </div> -->
                     </div>
                 </li>
             </ul>
-            <audio id="background-music" loop>
-                <source src="assets\Bury-the-Light-(Kazoo Cover).mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-            <button id="music-toggle-button">Toggle Music</button>
         </div>
     </div>
     <script type="module" src="game/game.js"></script>

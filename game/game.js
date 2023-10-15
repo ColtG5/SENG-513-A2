@@ -2,6 +2,7 @@ import { updateCharacterPosition } from '../character/character.js';
 import { squareGameGridChecker } from '../utility.js'
 import { collisionsToCheck } from './collisions.js';
 import { updateBullets, updateEnemies } from './update-objects.js';
+import { startWave } from '../enemy/enemy-spawning.js';
 
 const gameTickInterval = 1000 / 60; // 30 game ticks per second
 
@@ -12,6 +13,8 @@ function updateGame(accumulatedTime, timestamp, gameTickInterval) {
     updateCharacterPosition();
     updateEnemies();
     updateBullets();
+
+    startWave();
 
     // console.log(`${accumulatedTime} ${timestamp} ${gameTickInterval}`)
     // resetKeyStates();
