@@ -9,7 +9,7 @@ body {
 
 @font-face {
     font-family: 'CODZombies';
-    src: url('/assets/edosz.ttf');
+    src: url('../assets/edosz.ttf');
 }
 
 #background {

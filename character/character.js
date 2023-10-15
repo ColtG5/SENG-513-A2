@@ -3,7 +3,7 @@ const gameContainer = document.getElementById('game-container');
 
 // --------------------------- MOVEMENT ---------------------------
 
-const movementSpeed = 5;
+const movementSpeed = 3;
 const maxX = gameContainer.offsetWidth;
 // console.log(maxX)
 const maxY = gameContainer.offsetHeight;
