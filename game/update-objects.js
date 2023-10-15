@@ -31,8 +31,9 @@ function getDirectionToMove(mover, target) {
 
 function updateBullets() {
     bullets.map((bullet) => {
-        bullet.element.style.left = bullet.element.offsetLeft + bullet.dx + 'px';
-        bullet.element.style.top = bullet.element.offsetTop + bullet.dy + 'px';
+        // console.log(bullet.element.offsetLeft + bullet.dx)
+        bullet.element.style.left = bullet.element.offsetLeft + (bullet.dx * bullet.speed) + 'px';
+        bullet.element.style.top = bullet.element.offsetTop + (bullet.dy * bullet.speed) + 'px';
         // if (isColliding(bullet, enemy)) {
         //     console.log("collided")
         //     return
@@ -54,6 +55,11 @@ function updateEnemies() {
     //     enemy.element.style.top = newY + 'px';
     // });
     enemies.map((enemy) => {
+        if (isColliding(enemy, {element: character})) {
+            // console.log("collided, not moving closer!")
+            return
+        }
+
         // const {dx, dy} = getDirectionToMove(enemy, character);
         // console.log(character.offsetLeft, character.offsetTop)
         const dx = getDirectionToMove(enemy, character).nDeltaX * enemy.speed;
@@ -63,11 +69,6 @@ function updateEnemies() {
         let newY = enemy.element.offsetTop + dy;
 
         // console.log(enemy.element.offsetLeft, enemy.element.offsetTop);
-
-        if (isColliding(enemy, {element: character})) {
-            // console.log("collided, not moving closer!")
-            return
-        }
 
         enemy.element.style.left = newX + 'px';
         enemy.element.style.top = newY + 'px';

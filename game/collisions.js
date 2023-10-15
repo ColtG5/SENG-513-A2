@@ -73,26 +73,15 @@ function bulletEnemyCollision(bullet, enemy) {
     if (bullet.enemiesHit.includes(enemy.id)) {
         return;
     }
-
-    // console.log(`topoffunction: ${bullet.health}`)
-    // check if bullet collides with enemy on the page
-    // if it does, remove the bullet, and remove the enemy
-    // console.log("collided")
-    // console.log("HERE")
-    // bullet.element.remove();
-    // bullets.splice(bullets.indexOf(bullet), 1);
-
-    // console.log(enemy.hp);
-    // console.log(bullet.damage);
     enemy.hp -= bullet.damage;
     // console.log(enemy.hp)
     if (enemy.hp <= 0) {
         enemy.element.remove();
         enemies.splice(enemies.indexOf(enemy), 1);
     }
-    // console.log(bullet)
-    // console.log(`bullet hp: ${bullet.health}`)
     bullet.health -= enemy.damage;
+    bullet.speed = Math.floor(bullet.speed * 0.5);
+    console.log(bullet.speed)
     // console.log(`bullet hp: ${bullet.hp}`)
     if (bullet.health <= 0) {
         bullet.element.remove();
@@ -101,15 +90,6 @@ function bulletEnemyCollision(bullet, enemy) {
 
     bullet.enemiesHit.push(enemy.id);
     console.log(bullet)
-
-    // if (enemy.hp - bullet.damage < 10)  {
-    //     enemy.hp = 0;
-    //     console.log("enemy dead")
-    //     console.log(enemy.hp)
-    // } else {
-    //     enemy.hp -= bullet.damage;
-    //     console.log(enemy.hp)
-    // }
 }
 
 function enemyCharacterCollision(enemy, character) {

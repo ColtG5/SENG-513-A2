@@ -52,9 +52,12 @@ function spawnBullet(event) {
     // const { dx, dy } = bulletDirection(event)
     // const { dx, dy } = bulletDirection(event);
 
-    const speed = bullet.speed;
-    bullet.dx = dx * speed;
-    bullet.dy = dy * speed;
+    // const speed = bullet.speed;
+    // bullet.dx = dx * speed;
+    // bullet.dy = dy * speed;
+
+    bullet.dx = dx;
+    bullet.dy = dy;
 
     // console.log(dx, dy);
 
@@ -67,10 +70,10 @@ function spawnBullet(event) {
     bullet.element.style.top = bulletStartY + 'px';
 
     gameContainer.appendChild(bullet.element);
-    console.log(bullet)
+    // console.log(bullet)
     bullets.push(bullet);
     console.log('shoot fr fr');
-    console.log(bullets);
+    // console.log(bullets);
 }
 
 export { bullets }
