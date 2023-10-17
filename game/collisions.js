@@ -81,7 +81,7 @@ function bulletEnemyCollision(bullet, enemy) {
     }
     bullet.health -= enemy.damage;
     bullet.speed = Math.floor(bullet.speed * 0.5);
-    console.log(bullet.speed)
+    // console.log(bullet.speed)
     // console.log(`bullet hp: ${bullet.hp}`)
     if (bullet.health <= 0) {
         bullet.element.remove();
@@ -89,7 +89,7 @@ function bulletEnemyCollision(bullet, enemy) {
     }
 
     bullet.enemiesHit.push(enemy.id);
-    console.log(bullet)
+    // console.log(bullet)
 }
 
 function enemyCharacterCollision(enemy, character) {

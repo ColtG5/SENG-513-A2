@@ -11,3 +11,16 @@
     transform: initial;
     /* animation: zombie 1s steps(4) infinite; */
 }
+
+.big-minion {
+    background-image: url(../assets/BIG-MINION.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100px;
+    height: 80px;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    transform: initial;
+}

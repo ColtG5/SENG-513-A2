@@ -1,91 +1,148 @@
-import { createZombie } from './enemy.js';
+import { createZombie, createBigMinion } from "./enemy.js";
 
-const gameContainer = document.getElementById('game-container');
+const gameContainer = document.getElementById("game-container");
 
-let enemies = []
-let maxNumOfZombies = 15;
+let enemies = [];
+// let maxNumOfZombies = 15;
+// let maxNumOfBigMinions = 2;
+// let enemySpawnStuff = {
+//     zombies: { maxNumOfZombies: maxNumOfZombies },
+//     bigMinions: { maxNumOfBigMinions: maxNumOfBigMinions },
+// };
 
 function spawnZombie() {
-    // if (enemies.length > maxNumOfZombies - 1) {
-    //     return;
-    // }
     let enemy = createZombie();
-    gameContainer.appendChild(enemy.element);
-
-    enemy.element.style.top = Math.floor(Math.random() * (gameContainer.offsetHeight - enemy.element.offsetHeight)) + 'px';
-    enemy.element.style.left = Math.floor(Math.random() * (gameContainer.offsetWidth - enemy.element.offsetWidth)) + 'px';
-
-    // console.log(`height: ${enemy.element.offsetHeight}, width: ${enemy.element.offsetWidth}`)
-
-    enemies.push(enemy);
-    // console.log(`Spawned a ${enemy.type}. ${enemies}`)
-    // console.log(enemy.element.offsetWidth)
-    // console.log(enemy.element.offsetLeft)
-
-    // set the top and left properties of the zombie to a random posotion valid inside the game container
+    positionEnemy(enemy);
 }
 
-// function wave() {
-//     spawnZombie();
-//     spawnZombie();
-//     spawnZombie();
-//     spawnZombie();
-//     spawnZombie();
-// }
+function spawnBigMinion() {
+    let enemy = createBigMinion();
+    positionEnemy(enemy);
+}
 
-// function waves() {
-//     console.log("waves")
-//     setInterval(() => {
-//         wave();
-//     }, 10000);
-// }
+function positionEnemy(enemy) {
+    gameContainer.appendChild(enemy.element);
+    enemy.element.style.top =
+        Math.floor(Math.random() * (gameContainer.offsetHeight - enemy.element.offsetHeight)) + "px";
+    enemy.element.style.left =
+        Math.floor(Math.random() * (gameContainer.offsetWidth - enemy.element.offsetWidth)) + "px";
 
-// setTimeout(() => {
-//     wave();
-//     waves();
-// }, 2000);
+    enemies.push(enemy);
+}
 
 let canStartRound = true;
 let countingRounds = 0;
-let maxZombieCount = 5;
-
+// configure to my liking
 
 function startWave() {
     // console.log()
     if (enemies.length == 0 && canStartRound) {
-        console.log("starting a round")
+        console.log("starting a round");
         canStartRound = false;
-        let waveText = document.getElementById('wave-text');
+        let waveText = document.getElementById("wave-text");
         // do the "starting round" text animation
         setTimeout(() => {
             countingRounds++;
             waveText.innerHTML = `ROUND ${countingRounds}`;
-            waveText.style.animation = 'fadeInOut 6s alternate'
+            waveText.style.animation = "fadeInOut 6s alternate";
         }, 3000);
 
-        // set the interval for spawning in the zombies for this round
         setTimeout(() => {
-            // waveText.style.opacity = '0';
-            waveText.style.animation = 'none';
-            let zombiesSpawnedThisRound = 0;
-            const zombieSpawning = setInterval(() => {
-                // console.log(countingRounds / 2)
-                const zombieHordeSize = countingRounds / 2;
-                for (let i = 0; i <= zombieHordeSize; i++) {
-                    spawnZombie();
-                }
-                zombiesSpawnedThisRound++;
-
-                if (zombiesSpawnedThisRound == maxZombieCount) {
-                    clearInterval(zombieSpawning);
-                    canStartRound = true;
-                    maxZombieCount += 2;
-                }
-            }, 1000);
+            waveText.style.animation = "none";
+            spawnDuringRound();
         }, 9000);
     }
 }
 
+let startingZombieCount = 4;
+let startingBigMinionCount = 1;
 
+const roundsBetweenZombieHordeSizeIncrease = 5;
+const roundsBetweenBigMinionHordeSizeIncrease = 8;
 
-export { enemies, startWave }
+let extraZombiesEachRound = 1;
+let extraBigMinionsEachRound = 0.2;
+
+function spawnDuringRound() {
+    // let zombieCountForRound = Math.floor(startingZombieCount-1 + extraZombiesEachRound * countingRounds);
+    // let bigMinionCountForRound = Math.floor(startingBigMinionCount-1 + extraBigMinionsEachRound * countingRounds);
+    let zombieCountForRound = startingZombieCount + Math.floor(extraZombiesEachRound * countingRounds);
+    let bigMinionCountForRound = startingBigMinionCount + Math.floor(extraBigMinionsEachRound * countingRounds);
+    const zombieHordeSize = countingRounds / roundsBetweenZombieHordeSizeIncrease;
+    const bigMinionHordeSize = countingRounds / roundsBetweenBigMinionHordeSizeIncrease;
+
+    let enemySpawnStuff = {
+        zombies: {
+            maxCount: zombieCountForRound,
+            hordeSize: zombieHordeSize,
+            spawnFunc: spawnZombie,
+        },
+        bigMinions: {
+            maxCount: bigMinionCountForRound,
+            hordeSize: bigMinionHordeSize,
+            spawnFunc: spawnBigMinion,
+        },
+    };
+
+    const spawningDuringRoundInterval = setInterval(() => {
+        // const keys = Object.keys(enemySpawnStuff);
+
+        // const randomIndex = Math.floor(Math.random() * keys.length);
+        // enemyObj = enemySpawnStuff[randomEnemy];
+
+        let result = randomEnemyFromRaffle(enemySpawnStuff);
+        let enemyObj = result.enemyObj;
+        let enemyObjKey = result.enemyObjKey;
+
+        console.log(`spawning ${enemyObj}`);
+
+        for (let i = 0; i <= enemyObj.hordeSize; i++) {
+            enemyObj.spawnFunc();
+        }
+
+        enemyObj.maxCount--;
+        if (enemyObj.maxCount <= 0) {
+            // enemySpawnStuff.splice(enemyObj, 1);
+            console.log(`\t\t\tdeleting ${enemyObj}`)
+            delete enemySpawnStuff[enemyObjKey];
+        }
+
+        console.log(`enemySpawnStuff: ${enemySpawnStuff} ${Object.keys(enemySpawnStuff).length}}`);
+
+        if (Object.keys(enemySpawnStuff).length == 0) {
+            console.log("round over")
+            canStartRound = true;
+            clearInterval(spawningDuringRoundInterval);
+        }
+
+        // enemySpawnStuff[randomEnemy][maxCount]--;
+
+        // if (zombiesSpawnedThisRound >= maxNumOfEnemies) {
+        //     clearInterval(spawningDuringRoundInterval);
+        //     canStartRound = true;
+        //     maxZombieCount += extraZombiesEachRound;
+        // }
+    }, 1000);
+}
+
+function randomEnemyFromRaffle(enemySpawnStuff) {
+    const keys = Object.keys(enemySpawnStuff);
+    // console.log(keys);
+    let raffleBowl = [];
+    for (const key of keys) {
+        // console.log(key);
+        let enemyObj = enemySpawnStuff[key];
+        // console.log(enemyObj);
+        for (let i = 0; i < enemyObj.maxCount; i++) {
+            raffleBowl.push(key);
+        }
+    }
+    // console.log(raffleBowl);
+    const raffleResult = Math.floor(Math.random() * raffleBowl.length);
+    const raffleWinnerKey = raffleBowl[raffleResult];
+    // console.log(`raffle result: ${raff}`);
+
+    return { enemyObj: enemySpawnStuff[raffleWinnerKey], enemyObjKey: raffleWinnerKey };
+}
+
+export { enemies, startWave };
