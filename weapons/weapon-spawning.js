@@ -9,12 +9,30 @@ const character = document.getElementById('character');
 let bullets = []
 const bulletWidth = 10;
 const bulletHeight = 10;
+const rapidFireDelay = 100;
 
 const seperationFromCharacter = 30;
 
+let mouseDown = false;
 gameContainer.addEventListener('mousedown', (event) => {
     if (onWindow === true) {
-        spawnBullet(event);
+        mouseDown = true;
+        // while (mouseDown) {
+        //     print("whilellll")
+        //     setTimeout(() => {
+        //         print("spawning bullet")
+        //         spawnBullet(event);
+        //     }, rapidFireDelay);
+        // }
+        // spawn a bullet every rapidFireDelay seconds, and stop spawning bullets once mouseDown isnt true
+
+    }
+
+});
+
+gameContainer.addEventListener('mouseup', (event) => {
+    if (onWindow === true) {
+        mouseDown = false;
     }
 });
 
