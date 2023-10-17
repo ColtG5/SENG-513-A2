@@ -16,7 +16,7 @@ class Bullet {
 
 function createBullet() {
     let bullet = new Bullet();
-    console.log(bullet)
+    // console.log(bullet)
     // bullet.element.classList.add('bullet');
     // console.log(zombie.element)
     return bullet;
