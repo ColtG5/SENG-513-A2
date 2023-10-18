@@ -10,10 +10,16 @@ class Zombie {
         this.money = money;
         this.image = image;
         this.element = document.createElement("div");
+        this.element.classList.add("zombie");
         let hurtbox = document.createElement("div");
         hurtbox.classList.add("zombie-hurtbox");
         this.element.appendChild(hurtbox);
-        this.element.classList.add("zombie");
+        let healthbar = document.createElement("progress");
+        healthbar.classList.add("healthbar");
+        healthbar.value = this.hp;
+        healthbar.max = this.hp;
+        healthbar.maxwidth = "100%";
+        this.element.appendChild(healthbar);
         this.tx = 0;
         this.ty = 0;
     }
@@ -31,10 +37,15 @@ class BigMinion {
         this.money = money;
         this.image = image;
         this.element = document.createElement("div");
+        this.element.classList.add("big-minion");
         let hurtbox = document.createElement("div");
         hurtbox.classList.add("big-minion-hurtbox");
         this.element.appendChild(hurtbox);
-        this.element.classList.add("big-minion");
+        let healthbar = document.createElement("progress");
+        healthbar.classList.add("healthbar");
+        healthbar.value = this.hp;
+        healthbar.max = this.hp;
+        this.element.appendChild(healthbar);
         this.tx = 0;
         this.ty = 0;
     }

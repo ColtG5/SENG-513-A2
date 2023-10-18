@@ -94,6 +94,10 @@ function bulletEnemyCollision(bullet, enemy) {
         enemy.element.remove();
         enemies.splice(enemies.indexOf(enemy), 1);
     }
+
+    let healthbar = enemy.element.querySelector("progress");
+    console.log(`\t\t\t${healthbar}`)
+    healthbar.value = enemy.hp;
     bullet.health -= enemy.damage;
     bullet.speed = Math.floor(bullet.speed * 0.5);
     // console.log(bullet.speed)

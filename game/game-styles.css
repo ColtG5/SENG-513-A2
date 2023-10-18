@@ -63,6 +63,13 @@ body {
     }
 }
 
-#wave-counter {
+/* #wave-counter {
 
+} */
+
+.healthbar {
+    color: azure;
+    width: 100%;
+    position: absolute;
+    top: -18%;
 }

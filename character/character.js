@@ -7,10 +7,13 @@ const movementSpeed = 3;
 const maxX = gameContainer.offsetWidth;
 // console.log(maxX)
 const maxY = gameContainer.offsetHeight;
+
+
 let x = character.offsetLeft;
 let y = character.offsetTop;
 let dx = 0;
 let dy = 0;
+let health = 50;
 
 let orient = "down-right"
 let lastOrientation = "down-right"
@@ -106,48 +109,6 @@ function resetKeyStates() {
     for (const key in keyStates) {
         keyStates[key] = false
     }
-}
-
-// --------------------------- SHOOTING ---------------------------
-
-// document.addEventListener("visibilitychange", (event) => {
-//     if (document.visibilityState == "visible") {
-//         console.log("tab is active")
-//     } else {
-//         console.log("tab is inactive")
-//     }
-// });
-
-function createBullet(event) {
-    // if (!isKeyDown('shift') || onWindow === false) {
-    //     return;
-    // }
-
-    // if (onWindow === false) {
-    //     return;
-    // }
-
-    // const bulletStartX = (x + (character.offsetWidth / 2) * seperationFromCharacter) - bulletWidth / 2;
-    // const bulletStartY = (y + (character.offsetHeight / 2) * seperationFromCharacter) - bulletHeight / 2;
-    // console.log(nDeltaX, nDeltaY)
-    // console.log(bulletStartX, bulletStartY);
-
-    // console.log('shoot fr fr')
-    const bullet = document.createElement('div');
-    bullet.classList.add('bullet');
-    // console.log(x, y);
-    bullet.style.left = bulletStartX + 'px';
-    bullet.style.top = bulletStartY + 'px';
-    bullet.style.position = 'absolute';
-    bullet.style.width = bulletWidth + 'px';
-    bullet.style.height = bulletHeight + 'px';
-    bullet.style.backgroundColor = '#32BEFF';
-    bullet.style.borderRadius = '50%';
-    gameContainer.appendChild(bullet);
-    // bullets.push(bullet);
-    // console.log(bullets);
-
-    gunImage();
 }
 
 let gunImageCounter = 0;
