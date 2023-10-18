@@ -44,37 +44,39 @@ function isColliding(elm1, elm2) {
         elm2 = { element: character };
     }
 
-    const elm1Left = elm1.element.offsetLeft;
-    const elm1Right = elm1Left + elm1.element.offsetWidth;
-    const elm1Top = elm1.element.offsetTop;
-    const elm1Bottom = elm1Top + elm1.element.offsetHeight;
+    const elm1Hurtbox = elm1.element.children[0];
+    const elm2Hurtbox = elm2.element.children[0];
+
+    const elm1Left = elm1.element.offsetLeft + elm1Hurtbox.offsetLeft;
+    const elm1Right = elm1Left + elm1.element.offsetWidth - elm1Hurtbox.offsetLeft * 2;
+    const elm1Top = elm1.element.offsetTop + elm1Hurtbox.offsetTop;
+    const elm1Bottom = elm1Top + elm1.element.offsetHeight - elm1Hurtbox.offsetTop * 2;
 
     // console.log(`elm1: ${elm1.element.id}\t elm2: ${elm2.element.id}`)
     // console.log(elm1)
     // console.log(elm1.element)
 
-    console.log(elm1.element);
-    console.log(elm1.element.querySelector(".zombie-hurtbox"));
-    console.log(elm1.element.offsetLeft)
-    console.log(elm1.element.querySelector(".zombie-hurtbox").offsetLeft)
+    // console.log(elm1.element);
+    // console.log(elm1.element.querySelector(".zombie-hurtbox"));
+    // console.log(elm1.element.offsetLeft)
+
+    // elm1 =
+    // console.log(elm1.element.children[0].offsetLeft)
+
+    // console.log(elm1.element.querySelector(".zombie-hurtbox").offsetLeft)
 
     // console.log(`elm1Left: ${elm1Left}, elm1Right: ${elm1Right}, elm1Top: ${elm1Top}, elm1Bottom: ${elm1Bottom}`)
 
     // console.log(elm2)
     // console.log(elm2.element.offsetLeft, elm2.element.offsetWidth)
-    const elm2Left = elm2.element.offsetLeft;
-    const elm2Right = elm2Left + elm2.element.offsetWidth;
-    const elm2Top = elm2.element.offsetTop;
-    const elm2Bottom = elm2Top + elm2.element.offsetHeight;
+    const elm2Left = elm2.element.offsetLeft + elm2Hurtbox.offsetLeft;
+    const elm2Right = elm2Left + elm2.element.offsetWidth - elm2Hurtbox.offsetLeft * 2;
+    const elm2Top = elm2.element.offsetTop + elm2Hurtbox.offsetTop;
+    const elm2Bottom = elm2Top + elm2.element.offsetHeight - elm2Hurtbox.offsetTop * 2;
 
     // console.log(`elm2Left: ${elm2Left}, elm2Right: ${elm2Right}, elm2Top: ${elm2Top}, elm2Bottom: ${elm2Bottom}`)
 
-    if (
-        elm1Left < elm2Right &&
-        elm1Right > elm2Left &&
-        elm1Top < elm2Bottom &&
-        elm1Bottom > elm2Top
-    ) {
+    if (elm1Left < elm2Right && elm1Right > elm2Left && elm1Top < elm2Bottom && elm1Bottom > elm2Top) {
         // console.log("HERE")
         return true;
     }

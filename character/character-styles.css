@@ -2,12 +2,23 @@
     background-image: url("../assets/goob_big_eyes.png");
     background-repeat: no-repeat;
     background-size: 100% auto;
-    background-color: aqua;
+    /* background-color: aqua; */
     width: 60px;
     height: 55px;
     position: absolute;
     top: 30%;
     left: 50%;
+    /* transition: transform 0.1s ease; */
+}
+.character-hurtbox {
+    /* background-color: lightblue;
+    opacity: 0.5; */
+    width: 60px;
+    height: 55px;
+    position: absolute;
+    /* top: 30%; */
+    /* left: 50%; */
+    /* margin: 5px; */
     /* transition: transform 0.1s ease; */
 }
 

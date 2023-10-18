@@ -14,8 +14,8 @@
 }
 
 .zombie-hurtbox {
-    background-color: red;
-    opacity: 0.5;
+    /* background-color: red;
+    opacity: 0.5; */
     width: 35px;
     height: 90px;
     /* align-self: center; */
@@ -37,8 +37,8 @@
 }
 
 .big-minion-hurtbox {
-    background-color: red;
-    opacity: 0.5;
+    /* background-color: red;
+    opacity: 0.5; */
     width: 100px;
     height: 75px;
     /* align-self: center; */

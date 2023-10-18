@@ -7,3 +7,13 @@
     background-color: #32BEFF;
     border-radius: 50%;
 }
+
+.bullet-hurtbox {
+    /* background-color: green;
+    opacity: 0.5; */
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    /* align-self: center; */
+    /* margin: 5px; */
+}

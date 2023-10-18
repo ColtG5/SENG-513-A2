@@ -4,7 +4,7 @@ import { collisionsToCheck } from './collisions.js';
 import { updateBullets, updateEnemies } from './update-objects.js';
 import { startWave } from '../enemy/enemy-spawning.js';
 
-const gameTickInterval = 1000 / 20; // 30 game ticks per second
+const gameTickInterval = 1000 / 60; // 30 game ticks per second
 
 let previousTimestamp = 0;
 let accumulatedTime = 0;
