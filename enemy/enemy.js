@@ -43,7 +43,7 @@ class BigMinion {
 let id = 0;
 
 function createZombie() {
-    let zombie = new Zombie(++id, "zombie", 40, 5, 2, 2, 1, 10, "assets/zombie.png");
+    let zombie = new Zombie(++id, "zombie", 40, 5, 2, 1.5, 1, 10, "assets/zombie.png");
     console.log(zombie);
     // zombie.element.classList.add('zombie');
     // console.log(zombie.element)
@@ -51,7 +51,7 @@ function createZombie() {
 }
 
 function createBigMinion() {
-    let bigMinion = new BigMinion(++id, "bigMinion", 200, 10, 5, 3, 8, 50, "assets/BIG-MINION.png");
+    let bigMinion = new BigMinion(++id, "bigMinion", 200, 10, 5, 1.7, 8, 50, "assets/BIG-MINION.png");
     console.log(bigMinion);
     return bigMinion;
 }
