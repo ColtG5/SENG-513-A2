@@ -71,5 +71,10 @@ body {
     color: azure;
     width: 100%;
     position: absolute;
-    top: -18%;
+    top: -28%;
+    transform: scaleX(1) scaleY(1);
 }
+
+/* #character > .healthbar {
+    transform: scaleX(1) scaleY(1);
+} */

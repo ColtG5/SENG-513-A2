@@ -1,8 +1,9 @@
+import { character } from "../character/character.js";
 import { enemies } from "../enemy/enemy-spawning.js";
 import { bullets } from "../weapons/weapon-spawning.js";
 
 const gameContainer = document.getElementById("game-container");
-const character = document.getElementById("character");
+// const character = document.getElementById("character");
 
 const maxX = gameContainer.offsetWidth;
 const maxY = gameContainer.offsetHeight;
@@ -10,7 +11,7 @@ const maxY = gameContainer.offsetHeight;
 function collisionsToCheck() {
     bulletWallCollision();
     checkCollisions(bullets, enemies, bulletEnemyCollision);
-    checkCollisions(enemies, [{ element: character }], enemyCharacterCollision);
+    checkCollisions(enemies, [character], enemyCharacterCollision);
 }
 
 function checkCollisions(array1, array2, funcIfCollided) {
@@ -40,9 +41,9 @@ function bulletWallCollision() {
 }
 
 function isColliding(elm1, elm2) {
-    if (elm2 == character) {
-        elm2 = { element: character };
-    }
+    // if (elm2 == character) {
+    //     elm2 = { element: character };
+    // }
 
     const elm1Hurtbox = elm1.element.children[0];
     const elm2Hurtbox = elm2.element.children[0];
@@ -115,6 +116,25 @@ function enemyCharacterCollision(enemy, character) {
     // console.log("yeah")
     // check if enemy collides with character
     // if it does, remove health from the character
+    // console.log(character)
+    if (!enemy.canAttack) {
+        return;
+    }
+    console.log("attacked")
+    character.hp -= enemy.damage;
+    let healthbar = character.element.querySelector("progress");
+    healthbar.value = character.hp;
+
+    enemy.canAttack = false;
+    setTimeout(() => {
+        enemy.canAttack = true;
+    }, 1000);
+
+    if (character.hp <= 0) {
+        // character.element.remove();
+        console.log("you died");
+        location.reload();
+    }
 }
 
 export { collisionsToCheck, isColliding };

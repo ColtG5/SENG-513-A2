@@ -22,6 +22,7 @@ class Zombie {
         this.element.appendChild(healthbar);
         this.tx = 0;
         this.ty = 0;
+        this.canAttack = true;
     }
 }
 
@@ -48,6 +49,7 @@ class BigMinion {
         this.element.appendChild(healthbar);
         this.tx = 0;
         this.ty = 0;
+        this.canAttack = true;
     }
 }
 

@@ -22,39 +22,39 @@
     /* transition: transform 0.1s ease; */
 }
 
-.character-up {
+#character.character-up {
     transform: scaleY(-1);
 }
 
-.character-down {
+#character.character-down {
     transform: scaleY(1);
 }
 
-.character-left {
+#character.character-left {
     transform: scaleX(1);
 }
 
-.character-right {
+#character.character-right {
     transform: scaleX(-1);
 }
 
-.character-up-left {
+#character.character-up-left {
     transform: scaleX(1) scaleY(-1);
 }
 
-.character-up-right {
+#character.character-up-right {
     transform: scaleX(-1) scaleY(-1);
 }
 
-.character-down-left {
+#character.character-down-left {
     transform: scaleX(1) scaleY(1);
 }
 
-.character-down-right {
+#character.character-down-right {
     transform: scaleX(-1) scaleY(1);
 }
 
-.character-no-transform {
+#character.character-no-transform {
     transform: none;
 }
 
