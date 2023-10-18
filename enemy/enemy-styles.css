@@ -3,8 +3,9 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    width: 35px;
-    height: 80px;
+    /* background-color: red; */
+    width: 45px;
+    height: 100px;
     position: absolute;
     top: 5%;
     left: 5%;
@@ -12,15 +13,34 @@
     /* animation: zombie 1s steps(4) infinite; */
 }
 
+.zombie-hurtbox {
+    background-color: red;
+    opacity: 0.5;
+    width: 35px;
+    height: 90px;
+    /* align-self: center; */
+    margin: 5px;
+}
+
 .big-minion {
     background-image: url(../assets/BIG-MINION.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    width: 100px;
-    height: 80px;
+    /* background-color: red;   */
+    width: 110px;
+    height: 85px;
     position: absolute;
     top: 5%;
     left: 5%;
     transform: initial;
+}
+
+.big-minion-hurtbox {
+    background-color: red;
+    opacity: 0.5;
+    width: 100px;
+    height: 75px;
+    /* align-self: center; */
+    margin: 5px;
 }

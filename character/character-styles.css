@@ -2,8 +2,9 @@
     background-image: url("../assets/goob_big_eyes.png");
     background-repeat: no-repeat;
     background-size: 100% auto;
+    background-color: aqua;
     width: 60px;
-    height: 60px;
+    height: 55px;
     position: absolute;
     top: 30%;
     left: 50%;

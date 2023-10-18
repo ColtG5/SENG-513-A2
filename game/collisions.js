@@ -1,8 +1,8 @@
 import { enemies } from "../enemy/enemy-spawning.js";
 import { bullets } from "../weapons/weapon-spawning.js";
 
-const gameContainer = document.getElementById('game-container');
-const character = document.getElementById('character');
+const gameContainer = document.getElementById("game-container");
+const character = document.getElementById("character");
 
 const maxX = gameContainer.offsetWidth;
 const maxY = gameContainer.offsetHeight;
@@ -10,7 +10,7 @@ const maxY = gameContainer.offsetHeight;
 function collisionsToCheck() {
     bulletWallCollision();
     checkCollisions(bullets, enemies, bulletEnemyCollision);
-    checkCollisions(enemies, [{element: character}], enemyCharacterCollision)
+    checkCollisions(enemies, [{ element: character }], enemyCharacterCollision);
 }
 
 function checkCollisions(array1, array2, funcIfCollided) {
@@ -30,25 +30,33 @@ function bulletWallCollision() {
         const bulletTop = bullet.element.offsetTop;
         const bulletBottom = bulletTop + bullet.element.offsetHeight;
 
-        if (bulletLeft < 0 || bulletRight > maxX || bulletTop < 0 || bulletBottom > maxY ) {
+        if (bulletLeft < 0 || bulletRight > maxX || bulletTop < 0 || bulletBottom > maxY) {
             bullet.element.remove();
             bullets.splice(bullets.indexOf(bullet), 1);
-            console.log("bullet removed")
+            console.log("bullet removed");
             return;
         }
     });
 }
 
-
-
 function isColliding(elm1, elm2) {
     if (elm2 == character) {
-        elm2 = {element: character}
+        elm2 = { element: character };
     }
+
     const elm1Left = elm1.element.offsetLeft;
     const elm1Right = elm1Left + elm1.element.offsetWidth;
     const elm1Top = elm1.element.offsetTop;
     const elm1Bottom = elm1Top + elm1.element.offsetHeight;
+
+    // console.log(`elm1: ${elm1.element.id}\t elm2: ${elm2.element.id}`)
+    // console.log(elm1)
+    // console.log(elm1.element)
+
+    console.log(elm1.element);
+    console.log(elm1.element.querySelector(".zombie-hurtbox"));
+    console.log(elm1.element.offsetLeft)
+    console.log(elm1.element.querySelector(".zombie-hurtbox").offsetLeft)
 
     // console.log(`elm1Left: ${elm1Left}, elm1Right: ${elm1Right}, elm1Top: ${elm1Top}, elm1Bottom: ${elm1Bottom}`)
 
@@ -61,7 +69,12 @@ function isColliding(elm1, elm2) {
 
     // console.log(`elm2Left: ${elm2Left}, elm2Right: ${elm2Right}, elm2Top: ${elm2Top}, elm2Bottom: ${elm2Bottom}`)
 
-    if (elm1Left < elm2Right && elm1Right > elm2Left && elm1Top < elm2Bottom && elm1Bottom > elm2Top) {
+    if (
+        elm1Left < elm2Right &&
+        elm1Right > elm2Left &&
+        elm1Top < elm2Bottom &&
+        elm1Bottom > elm2Top
+    ) {
         // console.log("HERE")
         return true;
     }
@@ -93,13 +106,9 @@ function bulletEnemyCollision(bullet, enemy) {
 }
 
 function enemyCharacterCollision(enemy, character) {
-    console.log("yeah")
-
+    // console.log("yeah")
     // check if enemy collides with character
     // if it does, remove health from the character
-
-    
 }
 
-
-export { collisionsToCheck, isColliding }
+export { collisionsToCheck, isColliding };
