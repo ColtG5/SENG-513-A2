@@ -1,5 +1,5 @@
 // const character = document.getElementById('character');
-const gameContainer = document.getElementById("game-container");
+import { gameContainer } from "../utility.js";
 
 class Character {
     constructor(type, hp, damage, defense, speed, xp, money, image) {

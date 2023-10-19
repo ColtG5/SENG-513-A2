@@ -67,12 +67,23 @@ body {
 
 } */
 
+progress {
+    accent-color: #3a51ff;
+}
+
 .healthbar {
-    color: azure;
+    /* color: azure; */
     width: 100%;
     position: absolute;
     top: -28%;
+    
     transform: scaleX(1) scaleY(1);
+}
+
+/* make a style that targets all healthbars that arent the characters healthbar */
+progress:not(#character > .healthbar) {
+    /* color: red; */
+    accent-color: #ff2727;
 }
 
 /* #character > .healthbar {

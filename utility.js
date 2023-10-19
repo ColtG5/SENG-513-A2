@@ -1,19 +1,23 @@
-import { resetKeyStates } from './character/character.js'
+import { resetKeyStates } from "./character/character.js";
 
-const gameContainer = document.getElementById('game-container');
+let gameContainer = document.getElementById("game-container");
 
+setInterval(() => {
+    gameContainer = document.getElementById("game-container");
+    squareGameGridChecker();
+}, 100);
 
 // could prob switch to a listener if game is becoming slow
 function squareGameGridChecker() {
     // console.log(gameContainer.offsetWidth, gameContainer.offsetHeight);
     if (gameContainer.offsetWidth !== gameContainer.offsetHeight) {
-        gameContainer.style.outline = '5px solid #732600';
+        gameContainer.style.outline = "5px solid #732600";
     } else {
-        gameContainer.style.outline = '5px solid #3C2B00';
+        gameContainer.style.outline = "5px solid #3C2B00";
     }
 }
 
-document.getElementById("music-toggle-button").addEventListener("click", function() {
+document.getElementById("music-toggle-button").addEventListener("click", function () {
     toggleMusic();
 });
 
@@ -26,7 +30,7 @@ function toggleMusic() {
     } else {
         audio.pause();
     }
-    console.log("toggled music")
+    console.log("toggled music");
 }
 
 let onWindow = true;
@@ -38,7 +42,6 @@ function getOnWindow() {
 window.onfocus = function (ev) {
     console.log("gained focus");
     onWindow = true;
-
 };
 
 window.onblur = function (ev) {
@@ -47,5 +50,4 @@ window.onblur = function (ev) {
     resetKeyStates();
 };
 
-
-export { squareGameGridChecker, toggleMusic, onWindow }
+export { squareGameGridChecker, toggleMusic, onWindow, gameContainer };

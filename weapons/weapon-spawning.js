@@ -2,8 +2,8 @@ import { createBullet } from "../weapons/weapons.js";
 import { onWindow } from "../utility.js";
 import { gunImage } from "../character/character.js";
 import { getDirectionToMove } from "../game/update-objects.js";
+import { gameContainer } from "../utility.js";
 
-const gameContainer = document.getElementById("game-container");
 const character = document.getElementById("character");
 
 let bullets = [];

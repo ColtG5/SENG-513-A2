@@ -1,31 +1,79 @@
 import { createZombie, createBigMinion } from "./enemy.js";
-
-const gameContainer = document.getElementById("game-container");
+import { gameContainer } from "../utility.js";
 
 let enemies = [];
-// let maxNumOfZombies = 15;
-// let maxNumOfBigMinions = 2;
-// let enemySpawnStuff = {
-//     zombies: { maxNumOfZombies: maxNumOfZombies },
-//     bigMinions: { maxNumOfBigMinions: maxNumOfBigMinions },
-// };
+const numOfSpawnZonesASide = 10;
+let enemySpawnZones = [];
 
-function spawnZombie() {
-    let enemy = createZombie();
-    positionEnemy(enemy);
+function spawnZombie(numToSpawn = 1) {
+    const zone = Math.floor(Math.random() * enemySpawnZones.length);
+    for (let i = 0; i < numToSpawn; i++) {
+        let enemy = createZombie();
+        positionEnemy(enemy, zone);
+    }
 }
 
-function spawnBigMinion() {
-    let enemy = createBigMinion();
-    positionEnemy(enemy);
+function spawnBigMinion(numToSpawn = 1) {
+    const zone = Math.floor(Math.random() * enemySpawnZones.length);
+    for (let i = 0; i < numToSpawn; i++) {
+        let enemy = createBigMinion();
+        positionEnemy(enemy, zone);
+    }
 }
 
-function positionEnemy(enemy) {
+function makeSpawnZones() {
+    const width = gameContainer.offsetWidth;
+    const height = gameContainer.offsetHeight;
+    const zoneWidth = width / numOfSpawnZonesASide;
+    const zoneHeight = height / numOfSpawnZonesASide;
+    // const zoneWidth = 50;
+    // const zoneHeight = 50;
+
+    for (let i = 0; i < numOfSpawnZonesASide; i++) {
+        enemySpawnZones.push({
+            x: i * zoneWidth,
+            y: 10,
+            width: zoneWidth,
+            height: zoneHeight,
+        });
+        enemySpawnZones.push({
+            x: i * zoneWidth,
+            y: height - zoneHeight - 10,
+            width: zoneWidth,
+            height: zoneHeight,
+        });
+    }
+    for (let i = 0; i < numOfSpawnZonesASide; i++) {
+        enemySpawnZones.push({
+            x: 0,
+            y: i * zoneHeight,
+            width: zoneWidth,
+            height: zoneHeight,
+        });
+        enemySpawnZones.push({
+            x: width - zoneWidth - 0,
+            y: i * zoneHeight,
+            width: zoneWidth,
+            height: zoneHeight,
+        });
+    }
+}
+
+makeSpawnZones();
+
+function positionEnemy(enemy, zone) {
     gameContainer.appendChild(enemy.element);
+    // enemy.element.style.top =
+    //     Math.floor(Math.random() * (gameContainer.offsetHeight - enemy.element.offsetHeight)) + "px";
+    // enemy.element.style.left =
+    //     Math.floor(Math.random() * (gameContainer.offsetWidth - enemy.element.offsetWidth)) + "px";
+
+    // const randomSpawnZone = Math.floor(Math.random() * enemySpawnZones.length);
+    const spawnZone = enemySpawnZones[zone];
     enemy.element.style.top =
-        Math.floor(Math.random() * (gameContainer.offsetHeight - enemy.element.offsetHeight)) + "px";
+        Math.floor(Math.random() * (spawnZone.height - enemy.element.offsetHeight)) + spawnZone.y + "px";
     enemy.element.style.left =
-        Math.floor(Math.random() * (gameContainer.offsetWidth - enemy.element.offsetWidth)) + "px";
+        Math.floor(Math.random() * (spawnZone.width - enemy.element.offsetWidth)) + spawnZone.x + "px";
 
     enemies.push(enemy);
 }
@@ -96,32 +144,26 @@ function spawnDuringRound() {
 
         console.log(`spawning ${enemyObj}`);
 
-        for (let i = 0; i <= enemyObj.hordeSize; i++) {
-            enemyObj.spawnFunc();
-        }
+        // for (let i = 0; i <= enemyObj.hordeSize; i++) {
+        //     enemyObj.spawnFunc();
+        // }
+
+        enemyObj.spawnFunc(enemyObj.hordeSize);
 
         enemyObj.maxCount--;
         if (enemyObj.maxCount <= 0) {
             // enemySpawnStuff.splice(enemyObj, 1);
-            console.log(`\t\t\tdeleting ${enemyObj}`)
+            console.log(`\t\t\tdeleting ${enemyObj}`);
             delete enemySpawnStuff[enemyObjKey];
         }
 
         console.log(`enemySpawnStuff: ${enemySpawnStuff} ${Object.keys(enemySpawnStuff).length}}`);
 
         if (Object.keys(enemySpawnStuff).length == 0) {
-            console.log("round over")
+            console.log("round over");
             canStartRound = true;
             clearInterval(spawningDuringRoundInterval);
         }
-
-        // enemySpawnStuff[randomEnemy][maxCount]--;
-
-        // if (zombiesSpawnedThisRound >= maxNumOfEnemies) {
-        //     clearInterval(spawningDuringRoundInterval);
-        //     canStartRound = true;
-        //     maxZombieCount += extraZombiesEachRound;
-        // }
     }, 1000);
 }
 

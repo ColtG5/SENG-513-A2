@@ -1,8 +1,7 @@
 import { character } from "../character/character.js";
 import { enemies } from "../enemy/enemy-spawning.js";
 import { bullets } from "../weapons/weapon-spawning.js";
-
-const gameContainer = document.getElementById("game-container");
+import { gameContainer } from "../utility.js";
 // const character = document.getElementById("character");
 
 const maxX = gameContainer.offsetWidth;
