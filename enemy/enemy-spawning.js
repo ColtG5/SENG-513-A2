@@ -43,7 +43,8 @@ function makeSpawnZones() {
             height: zoneHeight,
         });
     }
-    for (let i = 0; i < numOfSpawnZonesASide; i++) {
+    // -1 because the corners are already done, and these zones make a y value thats out of bounds
+    for (let i = 0; i < numOfSpawnZonesASide-1; i++) {
         enemySpawnZones.push({
             x: 0,
             y: i * zoneHeight,
