@@ -48,7 +48,6 @@ gameContainer.addEventListener("mousedown", (event) => {
             }, rapidFireDelay);
         }
 
-
         // spawn a bullet every rapidFireDelay seconds, and stop spawning bullets once mouseDown isnt true
     }
 });
@@ -99,7 +98,7 @@ function spawnBullet(event) {
     const dx = bulletDirection(event).nDeltaX;
     const dy = bulletDirection(event).nDeltaY;
 
-    gunImage()
+    gunImage();
 
     // const { dx, dy } = bulletDirection(event)
     // const { dx, dy } = bulletDirection(event);
@@ -114,15 +113,9 @@ function spawnBullet(event) {
     // console.log(dx, dy);
 
     const bulletStartX =
-        character.offsetLeft +
-        character.offsetWidth / 2 +
-        dx * seperationFromCharacter -
-        bulletWidth / 2;
+        character.offsetLeft + character.offsetWidth / 2 + dx * seperationFromCharacter - bulletWidth / 2;
     const bulletStartY =
-        character.offsetTop +
-        character.offsetHeight / 2 +
-        dy * seperationFromCharacter -
-        bulletHeight / 2;
+        character.offsetTop + character.offsetHeight / 2 + dy * seperationFromCharacter - bulletHeight / 2;
 
     bullet.element.style.offsetWidth = bulletWidth + "px";
     bullet.element.style.offsetHeight = bulletHeight + "px";

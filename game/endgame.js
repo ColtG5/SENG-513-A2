@@ -1,5 +1,5 @@
 import { toggleGameOver } from "./game.js";
-import { countingRounds } from "../enemy/enemy-spawning.js"
+import { countingRounds } from "../enemy/enemy-spawning.js";
 
 let endgameScreen = document.getElementById("endgame-screen");
 let endgameText = document.getElementById("endgame-text");
@@ -15,15 +15,12 @@ function endScreen() {
     endgameScreen.style.opacity = "0.5";
     endgameText.style.display = "flex";
 
-
     // let endGameText = document.createElement("div");
     // endGameText.id = "endgame-text";
 
     // endGameText.innerHTML = `You died! You reached round ${countingRounds}.` + "<br>" + "Refresh to restart!";
 
     // gameContainer.insertBefore(endGameText, gameContainer.firstChild);
-
-
 
     // pointer-events: all;
 }

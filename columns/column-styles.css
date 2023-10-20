@@ -3,7 +3,8 @@ ul {
     padding: 0 1rem;
 }
 
-.left-column, .right-column {
+.left-column,
+.right-column {
     display: flex;
 
     /* align-items: center; */
@@ -19,7 +20,7 @@ ul {
     width: 20vw;
     height: 95vh;
     color: white;
-    background-color: #3352FF;
+    background-color: #3352ff;
     padding-left: 1rem;
     box-shadow: 0 0 12px black;
     text-shadow: 1px 1px 1px black;

@@ -1,8 +1,8 @@
-import { updateCharacterPosition } from '../character/character.js';
-import { squareGameGridChecker } from '../utility.js'
-import { collisionsToCheck } from './collisions.js';
-import { updateBullets, updateEnemies } from './update-objects.js';
-import { startWave } from '../enemy/enemy-spawning.js';
+import { updateCharacterPosition } from "../character/character.js";
+import { squareGameGridChecker } from "../utility.js";
+import { collisionsToCheck } from "./collisions.js";
+import { updateBullets, updateEnemies } from "./update-objects.js";
+import { startWave } from "../enemy/enemy-spawning.js";
 
 let gameOver = false;
 function getGameOver() {
@@ -35,9 +35,7 @@ function toggleGameOver() {
     gameOver = !gameOver;
 }
 
-
-
-// The game loop code was taken fron ChatGPT 
+// The game loop code was taken fron ChatGPT
 
 function gameLoop(timestamp) {
     if (gameOver) {
@@ -68,4 +66,4 @@ function gameLoop(timestamp) {
 // Start the game loop
 requestAnimationFrame(gameLoop);
 
-export { getGameOver, toggleGameOver }
+export { getGameOver, toggleGameOver };

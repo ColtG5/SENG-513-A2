@@ -6,11 +6,11 @@ class Bullet {
         this.dy = 0;
         this.health = 10;
         this.enemiesHit = [];
-        this.element = document.createElement('div');
-        let hurtbox = document.createElement('div');
-        hurtbox.classList.add('bullet-hurtbox');
+        this.element = document.createElement("div");
+        let hurtbox = document.createElement("div");
+        hurtbox.classList.add("bullet-hurtbox");
         this.element.appendChild(hurtbox);
-        this.element.classList.add('bullet');
+        this.element.classList.add("bullet");
     }
 }
 
@@ -25,4 +25,4 @@ function createBullet() {
     return bullet;
 }
 
-export { createBullet }
+export { createBullet };

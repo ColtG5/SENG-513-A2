@@ -1,8 +1,8 @@
-import { enemies } from '../enemy/enemy-spawning.js';
-import { bullets } from '../weapons/weapon-spawning.js';
-import { isColliding } from './collisions.js'
+import { enemies } from "../enemy/enemy-spawning.js";
+import { bullets } from "../weapons/weapon-spawning.js";
+import { isColliding } from "./collisions.js";
 
-const character = document.getElementById('character');
+const character = document.getElementById("character");
 
 function getDirectionToMove(mover, target) {
     let characterCenterX = target.offsetLeft + target.offsetWidth / 2;
@@ -25,15 +25,15 @@ function getDirectionToMove(mover, target) {
 
     return {
         nDeltaX: normalizedDeltaX,
-        nDeltaY: normalizedDeltaY
+        nDeltaY: normalizedDeltaY,
     };
 }
 
 function updateBullets() {
     bullets.map((bullet) => {
         // console.log(bullet.element.offsetLeft + bullet.dx)
-        bullet.element.style.left = bullet.element.offsetLeft + (bullet.dx * bullet.speed) + 'px';
-        bullet.element.style.top = bullet.element.offsetTop + (bullet.dy * bullet.speed) + 'px';
+        bullet.element.style.left = bullet.element.offsetLeft + bullet.dx * bullet.speed + "px";
+        bullet.element.style.top = bullet.element.offsetTop + bullet.dy * bullet.speed + "px";
         // if (isColliding(bullet, enemy)) {
         //     console.log("collided")
         //     return
@@ -55,9 +55,9 @@ function updateEnemies() {
     //     enemy.element.style.top = newY + 'px';
     // });
     enemies.map((enemy) => {
-        if (isColliding(enemy, {element: character})) {
+        if (isColliding(enemy, { element: character })) {
             // console.log("collided, not moving closer!")
-            return
+            return;
         }
 
         // const {dx, dy} = getDirectionToMove(enemy, character);
@@ -70,45 +70,9 @@ function updateEnemies() {
 
         // console.log(enemy.element.offsetLeft, enemy.element.offsetTop);
 
-        enemy.element.style.left = newX + 'px';
-        enemy.element.style.top = newY + 'px';
+        enemy.element.style.left = newX + "px";
+        enemy.element.style.top = newY + "px";
     });
-
-    // enemies.map((enemy) => {
-    //     const { dx, dy } = getDirectionToMove(enemy, character);
-    //     // console.log(dx, dy);
-    
-    //     // Calculate the new position using transform
-    //     let newX = enemy.element.style.left ? parseFloat(enemy.element.style.left) : 0;
-    //     let newY = enemy.element.style.top ? parseFloat(enemy.element.style.top) : 0;
-    //     newX += dx;
-    //     newY += dy;
-    
-    //     enemy.element.style.transform = `translate(${newX}px, ${newY}px)`;
-    // });
-
-    // enemies.map((enemy) => {
-    //     // const {dx, dy} = getDirectionToMove(enemy, character);
-    //     const dx = getDirectionToMove(enemy, character).nDeltaX * enemy.speed;
-    //     const dy = getDirectionToMove(enemy, character).nDeltaY * enemy.speed;
-
-    //     enemy.tx += dx;
-    //     enemy.ty += dy;
-    
-    //     // // Calculate the new position based on the current position and the speed
-    //     // const currentX = enemy.element.getBoundingClientRect().left;
-    //     // const currentY = enemy.element.getBoundingClientRect().top;
-    //     // const newX = currentX + dx;
-    //     // const newY = currentY + dy;
-    
-    //     // // Update the enemy's position using transform
-    //     console.log(dx, dy)
-    //     console.log(enemy.tx, enemy.ty)
-    //     enemy.element.style.transform = `translate(${enemy.tx}px, ${enemy.tx}px)`;
-        
-    // });
-    
-    
 }
 
-export { getDirectionToMove, updateBullets, updateEnemies }
+export { getDirectionToMove, updateBullets, updateEnemies };

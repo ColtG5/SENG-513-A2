@@ -97,7 +97,7 @@ function bulletEnemyCollision(bullet, enemy) {
     }
 
     let healthbar = enemy.element.querySelector("progress");
-    console.log(`\t\t\t${healthbar}`)
+    console.log(`\t\t\t${healthbar}`);
     healthbar.value = enemy.hp;
     bullet.health -= enemy.damage;
     bullet.speed = Math.floor(bullet.speed * 0.5);
@@ -120,7 +120,7 @@ function enemyCharacterCollision(enemy, character) {
     if (!enemy.canAttack) {
         return;
     }
-    console.log("attacked")
+    console.log("attacked");
     character.hp -= enemy.damage;
     let healthbar = character.element.querySelector("progress");
     healthbar.value = character.hp;
