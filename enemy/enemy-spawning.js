@@ -32,13 +32,13 @@ function makeSpawnZones() {
     for (let i = 0; i < numOfSpawnZonesASide; i++) {
         enemySpawnZones.push({
             x: i * zoneWidth,
-            y: 10,
+            y: 0,
             width: zoneWidth,
             height: zoneHeight,
         });
         enemySpawnZones.push({
             x: i * zoneWidth,
-            y: height - zoneHeight - 10,
+            y: height - zoneHeight - 50,
             width: zoneWidth,
             height: zoneHeight,
         });
@@ -187,4 +187,4 @@ function randomEnemyFromRaffle(enemySpawnStuff) {
     return { enemyObj: enemySpawnStuff[raffleWinnerKey], enemyObjKey: raffleWinnerKey };
 }
 
-export { enemies, startWave };
+export { enemies, startWave, countingRounds };

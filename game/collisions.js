@@ -2,6 +2,7 @@ import { character } from "../character/character.js";
 import { enemies } from "../enemy/enemy-spawning.js";
 import { bullets } from "../weapons/weapon-spawning.js";
 import { gameContainer } from "../utility.js";
+import { endScreen } from "./endgame.js";
 // const character = document.getElementById("character");
 
 const maxX = gameContainer.offsetWidth;
@@ -132,7 +133,8 @@ function enemyCharacterCollision(enemy, character) {
     if (character.hp <= 0) {
         // character.element.remove();
         console.log("you died");
-        location.reload();
+        endScreen();
+        // location.reload();
     }
 }
 

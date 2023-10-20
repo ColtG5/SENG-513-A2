@@ -3,6 +3,7 @@ import { onWindow } from "../utility.js";
 import { gunImage } from "../character/character.js";
 import { getDirectionToMove } from "../game/update-objects.js";
 import { gameContainer } from "../utility.js";
+import { getGameOver } from "../game/game.js";
 
 const character = document.getElementById("character");
 
@@ -18,6 +19,9 @@ let mouseX, mouseY;
 
 let rapidFiring = false;
 gameContainer.addEventListener("mousedown", (event) => {
+    if (getGameOver()) {
+        return;
+    }
     if (onWindow === true) {
         mouseDown = true;
 
@@ -58,9 +62,10 @@ gameContainer.addEventListener("mousemove", (event) => {
 });
 
 gameContainer.addEventListener("mouseup", (event) => {
-    if (onWindow === true) {
-        mouseDown = false;
-    }
+    // if (onWindow === true) {
+    //     mouseDown = false;
+    // }
+    mouseDown = false;
 });
 
 function bulletDirection() {

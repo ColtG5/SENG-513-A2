@@ -21,6 +21,45 @@ body {
     height: 100vh;
 }
 
+#endgame-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    /* height: 100vh; */
+    opacity: 1;
+    background-color: #3a51ff;
+    /* display: none; */
+    /* background-color: darkblue; */
+}
+
+#endgame-text {
+    background-color: #3a51ff;
+    text-align: center;
+    --width: 20%;
+    width: var(--width);
+    --height: 16%;
+    height: var(--height);
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    font-size: 2rem;
+    left: calc(50% - var(--width)/2);
+    /* left: 50%; */
+    
+    /* right: 50%; */
+    top: calc(50% - var(--height)/2);
+    /* margin: auto;
+    margin-top: 5rem; */
+    position: absolute;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    z-index: 1;
+    border: solid 5px #0d0055;
+    border-radius: 10px;
+    display: none;
+}
+
 #game-container {
     background-color: darkgreen;
     /* max-height: 95vmin;

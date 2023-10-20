@@ -4,6 +4,11 @@ import { collisionsToCheck } from './collisions.js';
 import { updateBullets, updateEnemies } from './update-objects.js';
 import { startWave } from '../enemy/enemy-spawning.js';
 
+let gameOver = false;
+function getGameOver() {
+    return gameOver;
+}
+
 const gameTickInterval = 1000 / 60; // 30 game ticks per second
 
 let previousTimestamp = 0;
@@ -26,11 +31,18 @@ function renderGame() {
     squareGameGridChecker();
 }
 
+function toggleGameOver() {
+    gameOver = !gameOver;
+}
+
 
 
 // The game loop code was taken fron ChatGPT 
 
 function gameLoop(timestamp) {
+    if (gameOver) {
+        return;
+    }
     // Calculate the time elapsed since the last frame
     const deltaTime = timestamp - previousTimestamp;
     previousTimestamp = timestamp;
@@ -55,3 +67,5 @@ function gameLoop(timestamp) {
 
 // Start the game loop
 requestAnimationFrame(gameLoop);
+
+export { getGameOver, toggleGameOver }

@@ -14,54 +14,60 @@
         <title>Goob</title>
     </head>
     <body>
-        <div id="background">
-            <div class="left-column">
-                <h1>Introduction</h1>
-                <h3>Welcome to Goob!</h3>
-                <br />
-                Some basic instructions:
-                <ul>
-                    <li>
-                        <p>Use WASD to move Goob around</p>
-                        <p></p>
-                    </li>
-                    <li><p>Left-click to shoot! Hold down left click to rapid fire!</p></li>
-                    <li><p>(Refresh the page if you resize the window)</p></li>
-                </ul>
-                <p>Last Updates: Added rapid firing, Big Minion, hurtboxes, You Can Die, enemies spawn near borders</p>
-                <p></p>
-                <audio id="background-music" loop>
-                    <source src="assets\Bury-the-Light-(Kazoo Cover).mp3" type="audio/mpeg" />
-                    Your browser does not support the audio element.
-                </audio>
-                <button id="music-toggle-button">Toggle Music</button>
-            </div>
-            <div id="game-container">
-                <!-- <div id="character">
+        <div id="endgame-text"><p style="margin: 0 auto;">You Died! Refresh to start again.</p></div>
+        <div id="endgame-screen">
+            <div id="background">
+                <div class="left-column">
+                    <h1>Introduction</h1>
+                    <h3>Welcome to Goob!</h3>
+                    <br />
+                    Some basic instructions:
+                    <ul>
+                        <li>
+                            <p>Use WASD to move Goob around</p>
+                            <p></p>
+                        </li>
+                        <li><p>Left-click to shoot! Hold down left click to rapid fire!</p></li>
+                        <li><p>(Refresh the page if you resize the window)</p></li>
+                    </ul>
+                    <p>
+                        Last Updates: Added rapid firing, Big Minion, hurtboxes, You Can Die, enemies spawn near borders
+                    </p>
+                    <p>Current record: Round 11</p>
+                    <p></p>
+                    <audio id="background-music" loop>
+                        <source src="assets\Bury-the-Light-(Kazoo Cover).mp3" type="audio/mpeg" />
+                        Your browser does not support the audio element.
+                    </audio>
+                    <button id="music-toggle-button">Toggle Music</button>
+                </div>
+                <div id="game-container">
+                    <!-- <div id="character">
                 <div class="character-hurtbox"></div>
                 <div class="healthbar"></div>
             </div> -->
-                <div id="wave-text">ROUND 0</div>
-                <div id="wave-counter"></div>
-            </div>
-            <div class="right-column">
-                <h1>Goob Fun Facts:</h1>
-                <ul style="align-items: center">
-                    <li>
-                        <div style="display: flex; align-items: center">
-                            <p>Goob has a cousin named Loob!</p>
-                            <br />
-                            <img
-                                id="column-loob"
-                                src="assets\loob.png"
-                                style="width: 50px; height: 70px; margin-left: auto; margin-right: auto"
-                            />
-                            <!-- <div style="display: flex; justify-content: center;">
+                    <div id="wave-text">ROUND 0</div>
+                    <div id="wave-counter"></div>
+                </div>
+                <div class="right-column">
+                    <h1>Goob Fun Facts:</h1>
+                    <ul style="align-items: center">
+                        <li>
+                            <div style="display: flex; align-items: center">
+                                <p>Goob has a cousin named Loob!</p>
+                                <br />
+                                <img
+                                    id="column-loob"
+                                    src="assets\loob.png"
+                                    style="width: 50px; height: 70px; margin-left: auto; margin-right: auto"
+                                />
+                                <!-- <div style="display: flex; justify-content: center;">
                             <img src="assets\loob.png" style="width: 50px; height: auto; text-align: center;"></p>
                         </div> -->
-                        </div>
-                    </li>
-                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         <script type="module" src="game/game.js"></script>
@@ -73,5 +79,6 @@
         <script type="module" src="random/easter-eggs.js"></script>
         <script type="module" src="game/collisions.js"></script>
         <script type="module" src="weapons/weapons.js"></script>
+        <script type="module" src="game/endgame.js"></script>
     </body>
 </html>
