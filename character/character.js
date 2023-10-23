@@ -1,6 +1,11 @@
-// const character = document.getElementById('character');
+/* Course: SENG 513 */
+/* Date: October 23rd, 2023 */
+/* Assignment 2 */
+/* Name: Colton Gowans */
+/* UCID: 30143970 */
 import { gameContainer } from "../utility.js";
 
+// class for the main character
 class Character {
     constructor(type, hp, damage, defense, speed, xp, money, image) {
         this.type = type;
@@ -22,20 +27,17 @@ class Character {
         healthbar.max = this.hp;
         healthbar.maxwidth = "100%";
         this.element.appendChild(healthbar);
-        // this.element.querySelector(".healthbar").classList.add("character-no-transform");
         this.tx = 0;
         this.ty = 0;
         this.canAttack = true;
     }
 }
-
+// only hp is used for now, other to be implemented later
 let character = new Character("character", 100);
 gameContainer.appendChild(character.element);
-// character.element
 
 const movementSpeed = 3;
 const maxX = gameContainer.offsetWidth;
-// console.log(maxX)
 const maxY = gameContainer.offsetHeight;
 
 let x = character.element.offsetLeft;
@@ -43,6 +45,7 @@ let y = character.element.offsetTop;
 let dx = 0;
 let dy = 0;
 
+// deal with moving the player
 function updateCharacterPosition() {
     if (isKeyDown("w")) {
         dy = -movementSpeed;
@@ -55,14 +58,15 @@ function updateCharacterPosition() {
     if (isKeyDown("a")) {
         dx = -movementSpeed;
     } else if (isKeyDown("d")) {
-        // console.log('hehe');
         dx = movementSpeed;
     } else {
         dx = 0;
     }
 
+    // flip the image to represent the direction we are moving
     updateCharacterOrientation(dx, dy);
 
+    // dont let the character move out of bounds
     if (x + dx < 0 || x + dx > maxX - character.element.offsetWidth) {
         dx = 0;
     }
@@ -72,13 +76,12 @@ function updateCharacterPosition() {
 
     x += dx;
     y += dy;
-    // console.log(x, y)
     character.element.style.left = x + "px";
     character.element.style.top = y + "px";
 }
 
+// set initial orientation
 let orient = "down-right";
-// let healhbarOrient
 let lastOrientation = "down-right";
 
 function updateCharacterOrientation(dx, dy) {
@@ -110,40 +113,44 @@ function updateCharacterOrientation(dx, dy) {
         }
     }
 
+    // dont change the orientation if it is the same as last time
     if (orient !== lastOrientation) {
-        // console.log(orient)
         character.element.classList.remove("character-" + lastOrientation);
         character.element.classList.add("character-" + orient);
         lastOrientation = orient;
     }
 }
 
+// check if a key is currently pressed
 function isKeyDown(key) {
     return keyStates[key] === true;
 }
 
+// holds what keys are currently pressed
 const keyStates = {};
 
+// listen for a key press
 window.addEventListener("keydown", (e) => {
     keyStates[e.key.toLocaleLowerCase()] = true;
-    // console.log(e.key)
 });
 
+// listen for a key release
 document.addEventListener("keyup", (e) => {
     keyStates[e.key.toLocaleLowerCase()] = false;
-    // console.log("released: " + e.key)
 });
 
+// reset all key states
 function resetKeyStates() {
     for (const key in keyStates) {
         keyStates[key] = false;
     }
 }
 
+// counts how many gun images are currently overlapping the character (bit of a lazy hack)
 let gunImageCounter = 0;
 
+// make a gun image appear over the character (after shooting)
 function gunImage() {
-    // console.log("gun image");
     let alternateImage = document.createElement("img");
     alternateImage.src = "assets/GOOB_GUN.png";
     alternateImage.width = character.element.offsetWidth;
@@ -152,7 +159,6 @@ function gunImage() {
     alternateImage.style.left = 0;
     alternateImage.style.top = 0;
     alternateImage.style.display = "block";
-    // alternateImage.classList.add('character-no-transform')
 
     // if we shot and there is currently no gun image replacing the goob image, hide the goob image (and add gun image below)
     if (gunImageCounter === 0) {
@@ -163,6 +169,7 @@ function gunImage() {
 
     character.element.appendChild(alternateImage);
 
+    // remove gun image after 0.3 seconds
     setTimeout(() => {
         character.element.removeChild(alternateImage);
         gunImageCounter--;
@@ -170,7 +177,6 @@ function gunImage() {
         if (gunImageCounter === 0) {
             character.element.style.backgroundImage = "url(assets/goob_big_eyes.png)";
             character.element.classList.remove("character-no-transform");
-            // console.log("gun image removed");
         }
     }, 300);
 }

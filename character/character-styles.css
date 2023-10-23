@@ -1,27 +1,28 @@
+/* Course: SENG 513 */
+/* Date: October 23rd, 2023 */
+/* Assignment 2 */
+/* Name: Colton Gowans */
+/* UCID: 30143970 */
+
+/* styles of the main character */
 #character {
     background-image: url("../assets/goob_big_eyes.png");
     background-repeat: no-repeat;
     background-size: 100% auto;
-    /* background-color: aqua; */
     width: 60px;
     height: 55px;
     position: absolute;
     top: 30%;
     left: 50%;
-    /* transition: transform 0.1s ease; */
 }
+/* charcters hit and hurt box */
 .character-hurtbox {
-    /* background-color: lightblue;
-    opacity: 0.5; */
     width: 60px;
     height: 55px;
     position: absolute;
-    /* top: 30%; */
-    /* left: 50%; */
-    /* margin: 5px; */
-    /* transition: transform 0.1s ease; */
 }
 
+/* styles to apply with javascript to make the players image rotate around */
 #character.character-up {
     transform: scaleY(-1);
 }
@@ -57,7 +58,3 @@
 #character.character-no-transform {
     transform: none;
 }
-
-/* .character-walking {
-    animation: character-walk 0.5s steps(4) infinite;
-} */
