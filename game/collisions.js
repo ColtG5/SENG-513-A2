@@ -1,19 +1,26 @@
+/* Course: SENG 513 */
+/* Date: October 23rd, 2023 */
+/* Assignment 2 */
+/* Name: Colton Gowans */
+/* UCID: 30143970 */
+
 import { character } from "../character/character.js";
 import { enemies } from "../enemy/enemy-spawning.js";
 import { bullets } from "../weapons/weapon-spawning.js";
 import { gameContainer } from "../utility.js";
 import { endScreen } from "./endgame.js";
-// const character = document.getElementById("character");
 
 const maxX = gameContainer.offsetWidth;
 const maxY = gameContainer.offsetHeight;
 
+// what collisions between objects in the game need to be checked every game tick
 function collisionsToCheck() {
-    bulletWallCollision();
-    checkCollisions(bullets, enemies, bulletEnemyCollision);
-    checkCollisions(enemies, [character], enemyCharacterCollision);
+    bulletWallCollision(); // did a bullet collide with a wall
+    checkCollisions(bullets, enemies, bulletEnemyCollision); // did a bullet hit an enemy
+    checkCollisions(enemies, [character], enemyCharacterCollision); // did an enemy hit the player
 }
 
+// check if any collisions happened between e.g. all enemies and all bullets
 function checkCollisions(array1, array2, funcIfCollided) {
     for (const elm1 of array1) {
         for (const elm2 of array2) {
@@ -24,6 +31,7 @@ function checkCollisions(array1, array2, funcIfCollided) {
     }
 }
 
+// delete a bullet if it hit a wall (not done "great" but too lazy to change)
 function bulletWallCollision() {
     bullets.forEach((bullet) => {
         const bulletLeft = bullet.element.offsetLeft;
@@ -31,6 +39,7 @@ function bulletWallCollision() {
         const bulletTop = bullet.element.offsetTop;
         const bulletBottom = bulletTop + bullet.element.offsetHeight;
 
+        // if bullet went out of bounds, remove it
         if (bulletLeft < 0 || bulletRight > maxX || bulletTop < 0 || bulletBottom > maxY) {
             bullet.element.remove();
             bullets.splice(bullets.indexOf(bullet), 1);
@@ -40,11 +49,9 @@ function bulletWallCollision() {
     });
 }
 
+// check if any two elements are colliding (overlapping)
 function isColliding(elm1, elm2) {
-    // if (elm2 == character) {
-    //     elm2 = { element: character };
-    // }
-
+    // use the hit/hurt box of an entity, not its actual position
     const elm1Hurtbox = elm1.element.children[0];
     const elm2Hurtbox = elm2.element.children[0];
 
@@ -53,88 +60,72 @@ function isColliding(elm1, elm2) {
     const elm1Top = elm1.element.offsetTop + elm1Hurtbox.offsetTop;
     const elm1Bottom = elm1Top + elm1.element.offsetHeight - elm1Hurtbox.offsetTop * 2;
 
-    // console.log(`elm1: ${elm1.element.id}\t elm2: ${elm2.element.id}`)
-    // console.log(elm1)
-    // console.log(elm1.element)
-
-    // console.log(elm1.element);
-    // console.log(elm1.element.querySelector(".zombie-hurtbox"));
-    // console.log(elm1.element.offsetLeft)
-
-    // elm1 =
-    // console.log(elm1.element.children[0].offsetLeft)
-
-    // console.log(elm1.element.querySelector(".zombie-hurtbox").offsetLeft)
-
-    // console.log(`elm1Left: ${elm1Left}, elm1Right: ${elm1Right}, elm1Top: ${elm1Top}, elm1Bottom: ${elm1Bottom}`)
-
-    // console.log(elm2)
-    // console.log(elm2.element.offsetLeft, elm2.element.offsetWidth)
     const elm2Left = elm2.element.offsetLeft + elm2Hurtbox.offsetLeft;
     const elm2Right = elm2Left + elm2.element.offsetWidth - elm2Hurtbox.offsetLeft * 2;
     const elm2Top = elm2.element.offsetTop + elm2Hurtbox.offsetTop;
     const elm2Bottom = elm2Top + elm2.element.offsetHeight - elm2Hurtbox.offsetTop * 2;
 
-    // console.log(`elm2Left: ${elm2Left}, elm2Right: ${elm2Right}, elm2Top: ${elm2Top}, elm2Bottom: ${elm2Bottom}`)
-
     if (elm1Left < elm2Right && elm1Right > elm2Left && elm1Top < elm2Bottom && elm1Bottom > elm2Top) {
-        // console.log("HERE")
         return true;
     }
     return false;
 }
 
+// handles logic of a bullet that hit an enemy
 function bulletEnemyCollision(bullet, enemy) {
-    // console.log(bullet)
+    // dont let a bullet hit the same enemy twice
     if (bullet.enemiesHit.includes(enemy.id)) {
         return;
     }
+
     enemy.hp -= bullet.damage;
-    // console.log(enemy.hp)
+    // if enemy died, remove it
     if (enemy.hp <= 0) {
         enemy.element.remove();
         enemies.splice(enemies.indexOf(enemy), 1);
     }
 
+    // otherwise, update its health
     let healthbar = enemy.element.querySelector("progress");
     console.log(`\t\t\t${healthbar}`);
     healthbar.value = enemy.hp;
     bullet.health -= enemy.damage;
+    // if bullet lived (pierced), slow it down by half
     bullet.speed = Math.floor(bullet.speed * 0.5);
-    // console.log(bullet.speed)
-    // console.log(`bullet hp: ${bullet.hp}`)
+    // but if it died just remove it
     if (bullet.health <= 0) {
         bullet.element.remove();
         bullets.splice(bullets.indexOf(bullet), 1);
     }
 
+    // track what enemies a bullet has hit
     bullet.enemiesHit.push(enemy.id);
-    // console.log(bullet)
 }
 
+// handles the logic of an enemy that hit the player
 function enemyCharacterCollision(enemy, character) {
-    // console.log("yeah")
-    // check if enemy collides with character
-    // if it does, remove health from the character
-    // console.log(character)
+    // only let an enemy attack once per second
     if (!enemy.canAttack) {
         return;
     }
-    console.log("attacked");
+    // console.log("attacked");
+
+    // update health and healthbar
     character.hp -= enemy.damage;
     let healthbar = character.element.querySelector("progress");
     healthbar.value = character.hp;
 
+    // attack! (and set it on cooldown)
     enemy.canAttack = false;
     setTimeout(() => {
         enemy.canAttack = true;
     }, 1000);
 
+    // if player died, end the game
     if (character.hp <= 0) {
-        // character.element.remove();
-        console.log("you died");
+        // console.log("you died");
+        // show the eng game screen where they cant do anything
         endScreen();
-        // location.reload();
     }
 }
 

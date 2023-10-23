@@ -1,22 +1,19 @@
+/* Course: SENG 513 */
+/* Date: October 23rd, 2023 */
+/* Assignment 2 */
+/* Name: Colton Gowans */
+/* UCID: 30143970 */
+
 ul {
     margin: 0;
     padding: 0 1rem;
 }
 
+/* the left and right columns beside the main game area */
 .left-column,
 .right-column {
     display: flex;
-
-    /* align-items: center; */
     flex-direction: column;
-    /* position: relative; */
-    /* justify-content: center; */
-    /* width: 50%;
-    height: 100%; */
-    /* position: absolute; */
-    /* top: 0; */
-    /* overflow: hidden; */
-    /* min-width: 20rem; */
     width: 20vw;
     height: 95vh;
     color: white;
@@ -28,17 +25,9 @@ ul {
 
 .left-column h1,
 .right-column h1 {
-    /* font-size: 5rem; */
     text-align: center;
-    /* margin: 0;
-    padding: 0.5rem; */
-    /* background-color: #3C2B00; */
     text-shadow: 1px 1px 4px black;
 }
-
-/* button {
-    margin: initial;
-} */
 
 .right-column #music-toggle-button {
     justify-content: center;
@@ -46,26 +35,15 @@ ul {
 }
 
 #music-toggle-button {
-    /* make the button lighter blue than the column background, and push it to the bottom of its column (using margin??) */
     background-color: #30b0ff;
     color: white;
     text-shadow: 1px 1px 4px black;
     margin-top: auto;
     margin-bottom: 1rem;
-    /* margin-left: 27%; */
     width: 35%;
     height: 5%;
-    /* margin-top: auto; */
-    /* position: bottom; */
-    /* align-self: flex-end; */
-    /* margin-bottom: auto; */
-    /* margin-left: 1rem; */
-    /* margin-right: 1rem; */
-    /* padding: 0.5rem; */
-    /* margin-top: 100%; */
     border: 3px outset rgb(0, 38, 255);
     border-radius: 10px;
-    /* border-radius: 0.5rem; */
 }
 
 #music-toggle-button:hover {

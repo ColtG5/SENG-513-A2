@@ -3,6 +3,7 @@
 /* Assignment 2 */
 /* Name: Colton Gowans */
 /* UCID: 30143970 */
+
 import { gameContainer } from "../utility.js";
 
 // class for the main character
@@ -80,8 +81,7 @@ function updateCharacterPosition() {
     character.element.style.top = y + "px";
 }
 
-// set initial orientation
-let orient = "down-right";
+let orient = "down-right"; // set initial orientation of the player
 let lastOrientation = "down-right";
 
 function updateCharacterOrientation(dx, dy) {

@@ -1,10 +1,17 @@
+/* Course: SENG 513 */
+/* Date: October 23rd, 2023 */
+/* Assignment 2 */
+/* Name: Colton Gowans */
+/* UCID: 30143970 */
+
 import { createZombie, createBigMinion } from "./enemy.js";
 import { gameContainer } from "../utility.js";
 
-let enemies = [];
-const numOfSpawnZonesASide = 10;
-let enemySpawnZones = [];
+let enemies = []; // holds currently spawned enemies
+const numOfSpawnZonesASide = 10; // controls how many spawn zones on each side there are
+let enemySpawnZones = []; // holds the different spawn zones
 
+// create a zombie and spawn him in a spawn zone
 function spawnZombie(numToSpawn = 1) {
     const zone = Math.floor(Math.random() * enemySpawnZones.length);
     for (let i = 0; i < numToSpawn; i++) {
@@ -13,6 +20,7 @@ function spawnZombie(numToSpawn = 1) {
     }
 }
 
+// create a big minion and spawn him in a spawn zone
 function spawnBigMinion(numToSpawn = 1) {
     const zone = Math.floor(Math.random() * enemySpawnZones.length);
     for (let i = 0; i < numToSpawn; i++) {
@@ -21,14 +29,14 @@ function spawnBigMinion(numToSpawn = 1) {
     }
 }
 
+// create the spawn zones for enemies to choose to spawn in (so enemies spawn on the sides of the map)
 function makeSpawnZones() {
     const width = gameContainer.offsetWidth;
     const height = gameContainer.offsetHeight;
     const zoneWidth = width / numOfSpawnZonesASide;
     const zoneHeight = height / numOfSpawnZonesASide;
-    // const zoneWidth = 50;
-    // const zoneHeight = 50;
 
+    // create the top and bottom zones
     for (let i = 0; i < numOfSpawnZonesASide; i++) {
         enemySpawnZones.push({
             x: i * zoneWidth,
@@ -43,7 +51,8 @@ function makeSpawnZones() {
             height: zoneHeight,
         });
     }
-    // -1 because the corners are already done, and these zones make a y value thats out of bounds
+    
+    // create the left and right zones
     for (let i = 0; i < numOfSpawnZonesASide-1; i++) {
         enemySpawnZones.push({
             x: 0,
@@ -62,14 +71,12 @@ function makeSpawnZones() {
 
 makeSpawnZones();
 
+// put the enemy onto the screen, in a random spawn zone
 function positionEnemy(enemy, zone) {
+    // put enemy onto screen
     gameContainer.appendChild(enemy.element);
-    // enemy.element.style.top =
-    //     Math.floor(Math.random() * (gameContainer.offsetHeight - enemy.element.offsetHeight)) + "px";
-    // enemy.element.style.left =
-    //     Math.floor(Math.random() * (gameContainer.offsetWidth - enemy.element.offsetWidth)) + "px";
 
-    // const randomSpawnZone = Math.floor(Math.random() * enemySpawnZones.length);
+    // move it to spot
     const spawnZone = enemySpawnZones[zone];
     enemy.element.style.top =
         Math.floor(Math.random() * (spawnZone.height - enemy.element.offsetHeight)) + spawnZone.y + "px";
@@ -79,16 +86,18 @@ function positionEnemy(enemy, zone) {
     enemies.push(enemy);
 }
 
-let canStartRound = true;
-let countingRounds = 0;
-// configure to my liking
+let canStartRound = true; // waits for all enemies of current rount to have spawned before the next round is allowed to start
+let countingRounds = 0; // counts round we are currently on
 
+// starts a new wave of enemies
 function startWave() {
-    // console.log()
+    // start the next round only once all enemies have spawned and died
     if (enemies.length == 0 && canStartRound) {
-        console.log("starting a round");
-        canStartRound = false;
+        // console.log("starting a round");
+
+        canStartRound = false; // set back to true once all spawning is done
         let waveText = document.getElementById("wave-text");
+
         // do the "starting round" text animation
         setTimeout(() => {
             countingRounds++;
@@ -96,6 +105,7 @@ function startWave() {
             waveText.style.animation = "fadeInOut 6s alternate";
         }, 3000);
 
+        // let the animation play for 6 second then start spawning enemies
         setTimeout(() => {
             waveText.style.animation = "none";
             spawnDuringRound();
@@ -103,23 +113,25 @@ function startWave() {
     }
 }
 
-let startingZombieCount = 4;
-let startingBigMinionCount = 1;
+// change all these variables to tune gameplay
+let startingZombieCount = 4; // how many zombies start on round 0
+let startingBigMinionCount = 1; // how many big minions start on round 0
 
-const roundsBetweenZombieHordeSizeIncrease = 5;
-const roundsBetweenBigMinionHordeSizeIncrease = 8;
+const roundsBetweenZombieHordeSizeIncrease = 5; // amount of rounds before more zombies start spawning together
+const roundsBetweenBigMinionHordeSizeIncrease = 8; // amount of rounds before more big minions start spawning together
 
-let extraZombiesEachRound = 1;
-let extraBigMinionsEachRound = 0.2;
+let extraZombiesEachRound = 1; // how many more zombies spawn each round
+let extraBigMinionsEachRound = 0.2; // how many more big minions spawn each round
 
 function spawnDuringRound() {
-    // let zombieCountForRound = Math.floor(startingZombieCount-1 + extraZombiesEachRound * countingRounds);
-    // let bigMinionCountForRound = Math.floor(startingBigMinionCount-1 + extraBigMinionsEachRound * countingRounds);
+    // how many of each enemy to spawn this round (correlated to the current round number)
     let zombieCountForRound = startingZombieCount + Math.floor(extraZombiesEachRound * countingRounds);
     let bigMinionCountForRound = startingBigMinionCount + Math.floor(extraBigMinionsEachRound * countingRounds);
+    // how big the horde sizes are for each enemy
     const zombieHordeSize = countingRounds / roundsBetweenZombieHordeSizeIncrease;
     const bigMinionHordeSize = countingRounds / roundsBetweenBigMinionHordeSizeIncrease;
 
+    // stores spawn info for each enemy: how many left to spawn, how many in a horde, which function spawns that enemy
     let enemySpawnStuff = {
         zombies: {
             maxCount: zombieCountForRound,
@@ -133,33 +145,27 @@ function spawnDuringRound() {
         },
     };
 
+    // spawn an enemy every second until we cant
     const spawningDuringRoundInterval = setInterval(() => {
-        // const keys = Object.keys(enemySpawnStuff);
+        let result = randomEnemyFromRaffle(enemySpawnStuff); // get the enemy to spawn for this interval
+        let enemyObj = result.enemyObj; // the enemy object
+        let enemyObjKey = result.enemyObjKey; // the key for the enemy object in enemySpawnStuff
 
-        // const randomIndex = Math.floor(Math.random() * keys.length);
-        // enemyObj = enemySpawnStuff[randomEnemy];
+        // console.log(`spawning ${enemyObj}`);
 
-        let result = randomEnemyFromRaffle(enemySpawnStuff);
-        let enemyObj = result.enemyObj;
-        let enemyObjKey = result.enemyObjKey;
-
-        console.log(`spawning ${enemyObj}`);
-
-        // for (let i = 0; i <= enemyObj.hordeSize; i++) {
-        //     enemyObj.spawnFunc();
-        // }
-
+        // use the enemy spawn function to spawn the enemy
         enemyObj.spawnFunc(enemyObj.hordeSize);
-
+        // take away one from how many of that enemy to spawn this round
         enemyObj.maxCount--;
+        // if we spawned all of that enemy this round, remove it from the enemySpawnStuff (keep spawning until this is empty)
         if (enemyObj.maxCount <= 0) {
-            // enemySpawnStuff.splice(enemyObj, 1);
-            console.log(`\t\t\tdeleting ${enemyObj}`);
-            delete enemySpawnStuff[enemyObjKey];
+            // console.log(`\t\t\tdeleting ${enemyObj}`);
+            delete enemySpawnStuff[enemyObjKey]; // removes entry from enemySpawnStuff
         }
 
-        console.log(`enemySpawnStuff: ${enemySpawnStuff} ${Object.keys(enemySpawnStuff).length}}`);
+        // console.log(`enemySpawnStuff: ${enemySpawnStuff} ${Object.keys(enemySpawnStuff).length}}`);
 
+        // if no more enemies to spawn for this round, stop the spawning interval
         if (Object.keys(enemySpawnStuff).length == 0) {
             console.log("round over");
             canStartRound = true;
@@ -168,22 +174,23 @@ function spawnDuringRound() {
     }, 1000);
 }
 
+// determines which enemy to spawn for each second of the round
 function randomEnemyFromRaffle(enemySpawnStuff) {
-    const keys = Object.keys(enemySpawnStuff);
-    // console.log(keys);
+    const keys = Object.keys(enemySpawnStuff); // get all types of enemies
+
+    // perform a "raffle" with each enemy, # of tickets = how many need to be spawned that round
+    // (more enemies to spawn that round = more tickets = more likely to spawn next)
+
     let raffleBowl = [];
     for (const key of keys) {
-        // console.log(key);
         let enemyObj = enemySpawnStuff[key];
-        // console.log(enemyObj);
         for (let i = 0; i < enemyObj.maxCount; i++) {
             raffleBowl.push(key);
         }
     }
-    // console.log(raffleBowl);
+    // get enemy that won the raffle!
     const raffleResult = Math.floor(Math.random() * raffleBowl.length);
     const raffleWinnerKey = raffleBowl[raffleResult];
-    // console.log(`raffle result: ${raff}`);
 
     return { enemyObj: enemySpawnStuff[raffleWinnerKey], enemyObjKey: raffleWinnerKey };
 }

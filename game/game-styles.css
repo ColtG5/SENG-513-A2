@@ -1,3 +1,9 @@
+/* Course: SENG 513 */
+/* Date: October 23rd, 2023 */
+/* Assignment 2 */
+/* Name: Colton Gowans */
+/* UCID: 30143970 */
+
 html {
     font-family: "Roboto", sans-serif;
 }
@@ -12,25 +18,22 @@ body {
     src: url("../edosz.ttf") format("truetype");
 }
 
+/* styles for background of the whole game */
 #background {
     background-color: darkblue;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    /* height: 100%; */
     height: 100vh;
 }
 
+/* styles for the end game screen */
 #endgame-screen {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
-    /* height: 100vh; */
     opacity: 1;
     background-color: #3a51ff;
-    /* display: none; */
-    /* background-color: darkblue; */
 }
 
 #endgame-text {
@@ -44,12 +47,7 @@ body {
     text-shadow: 1px 1px 1px black;
     font-size: 2rem;
     left: calc(50% - var(--width) / 2);
-    /* left: 50%; */
-
-    /* right: 50%; */
     top: calc(50% - var(--height) / 2);
-    /* margin: auto;
-    margin-top: 5rem; */
     position: absolute;
     display: flex;
     align-items: center;
@@ -60,21 +58,13 @@ body {
     display: none;
 }
 
+/* styles for the actual game area */
 #game-container {
     background-color: darkgreen;
-    /* max-height: 95vmin;
-    height: 100%;
-    max-width: 95vmin;
-    width: 100%; */
-
     width: 95vmin;
     max-width: 1300px;
     height: 95vmin;
     max-height: 1300px;
-
-    /* height: 0;
-    width: 40%;
-    padding-bottom: 40%; */
     outline: 5px solid #3c2b00;
     margin: 5px;
     user-select: none;
@@ -87,7 +77,6 @@ body {
     font-size: 5rem;
     opacity: 0;
     margin-top: 2rem;
-    /* animation: fadeInOut 6s alternate; */
 }
 
 @keyframes fadeInOut {
@@ -103,28 +92,22 @@ body {
 }
 
 /* #wave-counter {
-
+    to be done later
 } */
 
 progress {
     accent-color: #3a51ff;
 }
 
+/* styles for healthbars of entities */
 .healthbar {
-    /* color: azure; */
     width: 100%;
     position: absolute;
     top: -28%;
-
     transform: scaleX(1) scaleY(1);
 }
 
-/* make a style that targets all healthbars that arent the characters healthbar */
+/* make all enemy healthbars red */
 progress:not(#character > .healthbar) {
-    /* color: red; */
     accent-color: #ff2727;
 }
-
-/* #character > .healthbar {
-    transform: scaleX(1) scaleY(1);
-} */

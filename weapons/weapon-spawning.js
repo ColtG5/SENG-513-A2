@@ -1,91 +1,87 @@
+/* Course: SENG 513 */
+/* Date: October 23rd, 2023 */
+/* Assignment 2 */
+/* Name: Colton Gowans */
+/* UCID: 30143970 */
+
 import { createBullet } from "../weapons/weapons.js";
 import { onWindow } from "../utility.js";
 import { gunImage } from "../character/character.js";
-import { getDirectionToMove } from "../game/update-objects.js";
 import { gameContainer } from "../utility.js";
 import { getGameOver } from "../game/game.js";
+import { character } from "../character/character.js";
 
-const character = document.getElementById("character");
-
+// hold all the bullets spawned
 let bullets = [];
 const bulletWidth = 10;
 const bulletHeight = 10;
+// how many milliseconds before you can fire another bullet when holding down shoot
 const rapidFireDelay = 150;
 
+// spawns the bullet a bit away from the middle of the character
 const seperationFromCharacter = 30;
 
 let mouseDown = false;
 let mouseX, mouseY;
-
 let rapidFiring = false;
+
+// when mouse is clicked, shoot!
 gameContainer.addEventListener("mousedown", (event) => {
+    // dont shoot if game is over
     if (getGameOver()) {
         return;
     }
+    // only shoot if click was over game area
     if (onWindow === true) {
         mouseDown = true;
 
         mouseX = event.clientX - gameContainer.offsetLeft;
         mouseY = event.clientY - gameContainer.offsetTop;
 
-        // this below code is hilarious
-
-        // const rapidFireDelayInterval = setInterval(() => {
-        //     spawnBullet(event);
-        //     if (mouseDown) {
-        //         rapidFireDelayInterval.clearInterval();
-        //     }
-        // }, rapidFireDelay);
-
+        // if not rapid firing, start rapid firing
         if (rapidFiring === false) {
             rapidFiring = true;
             const rapidFireDelayInterval = setInterval(() => {
                 spawnBullet(event);
+                // stop rapid firing if mouse is no longer being clicked
                 if (!mouseDown) {
                     rapidFiring = false;
                     clearInterval(rapidFireDelayInterval);
                 }
             }, rapidFireDelay);
         }
-
-        // spawn a bullet every rapidFireDelay seconds, and stop spawning bullets once mouseDown isnt true
     }
 });
 
+// change mouse x and y when the mouse moves (sadly needed to make rapid firing work)
 gameContainer.addEventListener("mousemove", (event) => {
     if (onWindow === true && mouseDown) {
-        // Update the mouse position as the mouse moves
+        // update mouse position
         mouseX = event.clientX - gameContainer.offsetLeft;
         mouseY = event.clientY - gameContainer.offsetTop;
     }
 });
 
+// when mouse is released, stop shooting
 gameContainer.addEventListener("mouseup", (event) => {
-    // if (onWindow === true) {
-    //     mouseDown = false;
-    // }
     mouseDown = false;
 });
 
+// get direction for the bullet to travel for its entire life
 function bulletDirection() {
-    // Calculate the direction vector from character to mouse pointer
-    // const mouseX = event.clientX - gameContainer.offsetLeft;
-    // const mouseY = event.clientY - gameContainer.offsetTop;
-    const characterCenterX = character.offsetLeft + character.offsetWidth / 2;
-    const characterCenterY = character.offsetTop + character.offsetHeight / 2;
+    const characterCenterX = character.element.offsetLeft + character.element.offsetWidth / 2;
+    const characterCenterY = character.element.offsetTop + character.element.offsetHeight / 2;
 
+    // see how far away the mouse is from the center of the character
     const deltaX = mouseX - characterCenterX;
-    // console.log(mouseX, characterCenterX)
     const deltaY = mouseY - characterCenterY;
 
-    // Calculate the magnitude of the direction vector
+    // calculate the magnitude of the direction vector
     const magnitude = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
-    // Calculate the normalized direction vector
+    // normalize that distance
     const normalizedDeltaX = deltaX / magnitude;
     const normalizedDeltaY = deltaY / magnitude;
-
-    // console.log(normalizedDeltaX, normalizedDeltaY)
 
     return {
         nDeltaX: normalizedDeltaX,
@@ -94,28 +90,21 @@ function bulletDirection() {
 }
 
 function spawnBullet(event) {
+    // make a bullet and its lifetime direction
     let bullet = createBullet();
     const dx = bulletDirection(event).nDeltaX;
     const dy = bulletDirection(event).nDeltaY;
 
+    // set gun image!
     gunImage();
-
-    // const { dx, dy } = bulletDirection(event)
-    // const { dx, dy } = bulletDirection(event);
-
-    // const speed = bullet.speed;
-    // bullet.dx = dx * speed;
-    // bullet.dy = dy * speed;
 
     bullet.dx = dx;
     bullet.dy = dy;
 
-    // console.log(dx, dy);
-
     const bulletStartX =
-        character.offsetLeft + character.offsetWidth / 2 + dx * seperationFromCharacter - bulletWidth / 2;
+        character.element.offsetLeft + character.element.offsetWidth / 2 + dx * seperationFromCharacter - bulletWidth / 2;
     const bulletStartY =
-        character.offsetTop + character.offsetHeight / 2 + dy * seperationFromCharacter - bulletHeight / 2;
+        character.element.offsetTop + character.element.offsetHeight / 2 + dy * seperationFromCharacter - bulletHeight / 2;
 
     bullet.element.style.offsetWidth = bulletWidth + "px";
     bullet.element.style.offsetHeight = bulletHeight + "px";
@@ -123,10 +112,8 @@ function spawnBullet(event) {
     bullet.element.style.top = bulletStartY + "px";
 
     gameContainer.appendChild(bullet.element);
-    // console.log(bullet)
     bullets.push(bullet);
-    console.log("shoot fr fr");
-    // console.log(bullets);
+    // console.log("shoot fr fr");
 }
 
 export { bullets };

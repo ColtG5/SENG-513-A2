@@ -1,7 +1,12 @@
+/* Course: SENG 513 */
+/* Date: October 23rd, 2023 */
+/* Assignment 2 */
+/* Name: Colton Gowans */
+/* UCID: 30143970 */
+
+/* rotate Loob! */
 .rotate {
     transform: rotate(360deg);
     transition-duration: 1s;
     transition-delay: now;
-    /* -webkit-animation-timing-function: linear;
-    -webkit-animation-iteration-count: infinite; */
 }

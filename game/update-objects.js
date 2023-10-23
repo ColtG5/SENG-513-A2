@@ -1,27 +1,32 @@
+/* Course: SENG 513 */
+/* Date: October 23rd, 2023 */
+/* Assignment 2 */
+/* Name: Colton Gowans */
+/* UCID: 30143970 */
+
 import { enemies } from "../enemy/enemy-spawning.js";
 import { bullets } from "../weapons/weapon-spawning.js";
 import { isColliding } from "./collisions.js";
+import { character } from "../character/character.js";
 
-const character = document.getElementById("character");
-
+// get dx, dy for enemy to move towards character
 function getDirectionToMove(mover, target) {
-    let characterCenterX = target.offsetLeft + target.offsetWidth / 2;
-    let characterCenterY = target.offsetTop + target.offsetHeight / 2;
+    // move the enemies to the center of the player
+    let characterCenterX = target.element.offsetLeft + target.element.offsetWidth / 2;
+    let characterCenterY = target.element.offsetTop + target.element.offsetHeight / 2;
     let enemyX = mover.element.offsetLeft + mover.element.offsetWidth / 2;
     let enemyY = mover.element.offsetTop + mover.element.offsetHeight / 2;
 
+    // get how far enemy is away from character
     const deltaX = characterCenterX - enemyX;
-    // console.log(mouseX, characterCenterX)
     const deltaY = characterCenterY - enemyY;
 
-    // Calculate the magnitude of the direction vector
+    // get the magnitude of that disance
     const magnitude = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
-    // Calculate the normalized direction vector
+    // normalize the x and y distance
     const normalizedDeltaX = deltaX / magnitude;
     const normalizedDeltaY = deltaY / magnitude;
-
-    // console.log(normalizedDeltaX, normalizedDeltaY)
 
     return {
         nDeltaX: normalizedDeltaX,
@@ -29,46 +34,25 @@ function getDirectionToMove(mover, target) {
     };
 }
 
+// move the bullets in whatever direction they were shot in
 function updateBullets() {
     bullets.map((bullet) => {
-        // console.log(bullet.element.offsetLeft + bullet.dx)
         bullet.element.style.left = bullet.element.offsetLeft + bullet.dx * bullet.speed + "px";
         bullet.element.style.top = bullet.element.offsetTop + bullet.dy * bullet.speed + "px";
-        // if (isColliding(bullet, enemy)) {
-        //     console.log("collided")
-        //     return
-        // }
-        // console.log(bullet.element.offsetLeft, bullet.element.offsetTop)
-        // console.log(bullet.element.left)
-        // console.log(bullet.dx, bullet.dy)
-
-        // console.log(bullet.element.offsetLeft)
     });
 }
 
+// move the enemies towards the player
 function updateEnemies() {
-    // enemies.forEach((enemy) => {
-    //     let dx, dy = getDirectionToMove(enemy, character);
-    //     let newX = enemy.element.offsetLeft + dx;
-    //     let newY = enemy.element.offsetTop + dy;
-    //     enemy.element.style.left = newX + 'px';
-    //     enemy.element.style.top = newY + 'px';
-    // });
     enemies.map((enemy) => {
-        if (isColliding(enemy, { element: character })) {
-            // console.log("collided, not moving closer!")
+        // dont move the enemy if they're already in range of the player
+        if (isColliding(enemy, character)) {
             return;
         }
-
-        // const {dx, dy} = getDirectionToMove(enemy, character);
-        // console.log(character.offsetLeft, character.offsetTop)
         const dx = getDirectionToMove(enemy, character).nDeltaX * enemy.speed;
         const dy = getDirectionToMove(enemy, character).nDeltaY * enemy.speed;
-        // console.log(dx, dy)
         let newX = enemy.element.offsetLeft + dx;
         let newY = enemy.element.offsetTop + dy;
-
-        // console.log(enemy.element.offsetLeft, enemy.element.offsetTop);
 
         enemy.element.style.left = newX + "px";
         enemy.element.style.top = newY + "px";

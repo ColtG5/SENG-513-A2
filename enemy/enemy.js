@@ -1,3 +1,10 @@
+/* Course: SENG 513 */
+/* Date: October 23rd, 2023 */
+/* Assignment 2 */
+/* Name: Colton Gowans */
+/* UCID: 30143970 */
+
+// class for a zombie
 class Zombie {
     constructor(id, type, hp, damage, defense, speed, xp, money, image) {
         this.id = id;
@@ -26,6 +33,7 @@ class Zombie {
     }
 }
 
+// class for a big minion
 class BigMinion {
     constructor(id, type, hp, damage, defense, speed, xp, money, image) {
         this.id = id;
@@ -53,13 +61,12 @@ class BigMinion {
     }
 }
 
+// give each enemy a unique id
 let id = 0;
 
 function createZombie() {
     let zombie = new Zombie(++id, "zombie", 40, 5, 2, 1.5, 1, 10, "assets/zombie.png");
     console.log(zombie);
-    // zombie.element.classList.add('zombie');
-    // console.log(zombie.element)
     return zombie;
 }
 

@@ -1,7 +1,12 @@
+/* Course: SENG 513 */
+/* Date: October 23rd, 2023 */
+/* Assignment 2 */
+/* Name: Colton Gowans */
+/* UCID: 30143970 */
+
+/* styles for bullet */
 .bullet {
     position: absolute;
-    /* top: 50%;
-    left: 5%; */
     width: 10px;
     height: 10px;
     background-color: #32beff;
@@ -9,11 +14,7 @@
 }
 
 .bullet-hurtbox {
-    /* background-color: green;
-    opacity: 0.5; */
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    /* align-self: center; */
-    /* margin: 5px; */
 }

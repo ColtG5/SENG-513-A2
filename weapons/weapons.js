@@ -1,3 +1,10 @@
+/* Course: SENG 513 */
+/* Date: October 23rd, 2023 */
+/* Assignment 2 */
+/* Name: Colton Gowans */
+/* UCID: 30143970 */
+
+// class for a bullet
 class Bullet {
     constructor() {
         this.damage = 10;
@@ -14,14 +21,9 @@ class Bullet {
     }
 }
 
-// let bulletSpeed = 40;
-// let bulletDamage = 10;
-
+// make bullet
 function createBullet() {
     let bullet = new Bullet();
-    // console.log(bullet)
-    // bullet.element.classList.add('bullet');
-    // console.log(zombie.element)
     return bullet;
 }
 
