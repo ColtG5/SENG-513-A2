@@ -20,9 +20,10 @@ body {
 
 /* styles for background of the whole game */
 #background {
-    background-color: rgb(186, 186, 255);
+    background-color: rgb(35, 135, 165);
     display: flex;
     justify-content: space-evenly;
+    /* justify-content: center; */
     align-items: center;
     height: 100vh;
 }
@@ -64,13 +65,13 @@ body {
     background-size: cover;
     /* background-repeat: no-repeat; */
     background-color: darkgreen;
-    width: 95vmin;
+    width: 96vmin;
     max-width: 1300px;
-    height: 95vmin;
+    height: 96vmin;
     max-height: 1300px;
     /* outline updated every game tick in random/utility.js, this just affects initial load */
     outline: 10px solid #3c2b00;
-    margin: 5px;
+    margin: 0px 20px;
     user-select: none;
     position: relative;
 }

@@ -15,13 +15,15 @@ ul {
     display: flex;
     flex-direction: column;
     width: 20vw;
-    height: 95vh;
+    height: 98vh;
     color: white;
     background-color: #3352ff;
+    background-image: url("../assets/column_tower.png");
+    background-size: cover;
     padding: 0rem 1rem;
-    outline: 10px solid #0099ff;
+    outline: 3px solid #000b4b;
     box-shadow: 0 0 12px black;
-    border-radius: 10px;
+    border-radius: 50px;
     text-shadow: 1px 1px 1px black;
 }
 
