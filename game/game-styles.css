@@ -20,7 +20,7 @@ body {
 
 /* styles for background of the whole game */
 #background {
-    background-color: darkblue;
+    background-color: rgb(186, 186, 255);
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -60,12 +60,16 @@ body {
 
 /* styles for the actual game area */
 #game-container {
+    background-image: url("../assets/goob_game_forest_background.png");
+    background-size: cover;
+    /* background-repeat: no-repeat; */
     background-color: darkgreen;
     width: 95vmin;
     max-width: 1300px;
     height: 95vmin;
     max-height: 1300px;
-    outline: 5px solid #3c2b00;
+    /* outline updated every game tick in random/utility.js, this just affects initial load */
+    outline: 10px solid #3c2b00;
     margin: 5px;
     user-select: none;
     position: relative;

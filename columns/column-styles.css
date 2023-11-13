@@ -19,7 +19,9 @@ ul {
     color: white;
     background-color: #3352ff;
     padding: 0rem 1rem;
+    outline: 10px solid #0099ff;
     box-shadow: 0 0 12px black;
+    border-radius: 10px;
     text-shadow: 1px 1px 1px black;
 }
 

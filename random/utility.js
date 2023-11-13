@@ -32,9 +32,9 @@ const setGameContainer = (newGameContainer) => {
 // tells you when your game grid is not square! (by changing border color from brown to red)
 function squareGameGridChecker() {
     if (gameContainer.offsetWidth !== gameContainer.offsetHeight) {
-        gameContainer.style.outline = "5px solid #732600";
+        gameContainer.style.outline = "10px solid #732600";
     } else {
-        gameContainer.style.outline = "5px solid #3C2B00";
+        gameContainer.style.outline = "10px solid #3C2B00";
     }
 }
 
