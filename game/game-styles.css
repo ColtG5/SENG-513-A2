@@ -20,7 +20,7 @@ body {
 
 /* styles for background of the whole game */
 #background {
-    background-color: rgb(35, 135, 165);
+    background-color: rgb(35, 96, 165);
     display: flex;
     justify-content: space-evenly;
     /* justify-content: center; */
