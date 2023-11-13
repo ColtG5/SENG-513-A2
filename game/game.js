@@ -15,6 +15,26 @@ function getGameOver() {
     return gameOver;
 }
 
+// pausing game was too much work, not worth it for now
+
+// // handles the pause game button, flips the state whenever pressed
+// document.getElementById("pause-game-button").addEventListener("click", function () {
+//     toggleGamePaused();
+// });
+
+// function toggleGamePaused() {
+//     const gamePaused = document.getElementById("pause-game-button");
+//     if (gamePaused.innerHTML === "Pause Game") {
+//         gamePaused.innerHTML = "Resume Game";
+//     } else {
+//         gamePaused.innerHTML = "Pause Game";
+//     }
+//     gameOver = !gameOver;
+//     if (!gameOver) {
+//         requestAnimationFrame(gameLoop);
+//     }
+// }
+
 const gameTickInterval = 1000 / 60; // 60 game ticks per second
 
 let previousTimestamp = 0; // time of last frame

@@ -16,9 +16,6 @@ listenForGameContainerChange((newGameContainer) => {
     gameContainer = newGameContainer;
 });
 
-const maxX = gameContainer.offsetWidth;
-const maxY = gameContainer.offsetHeight;
-
 // what collisions between objects in the game need to be checked every game tick
 function collisionsToCheck() {
     bulletWallCollision(); // did a bullet collide with a wall
@@ -39,6 +36,8 @@ function checkCollisions(array1, array2, funcIfCollided) {
 
 // delete a bullet if it hit a wall (not done "great" but too lazy to change)
 function bulletWallCollision() {
+    const maxX = gameContainer.offsetWidth;
+    const maxY = gameContainer.offsetHeight;
     bullets.forEach((bullet) => {
         const bulletLeft = bullet.element.offsetLeft;
         const bulletRight = bulletLeft + bullet.element.offsetWidth;

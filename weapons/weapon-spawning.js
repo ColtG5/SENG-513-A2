@@ -37,6 +37,7 @@ let rapidFiring = false;
 
 // when mouse is clicked, shoot!
 gameContainer.addEventListener("mousedown", (event) => {
+    console.log(`gamecontainer: ${gameContainer.offsetLeft}, ${gameContainer.offsetTop}`)
     // dont shoot if game is over
     if (getGameOver()) {
         return;
