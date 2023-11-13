@@ -8,15 +8,15 @@
 <html lang="en">
     <head>
         <!-- add a favicon -->
-        <link rel="icon" href="assets/goob_big_eyes.ico">
-        <link rel="stylesheet" href="game/game-styles.css">
-        <link rel="stylesheet" href="character/character-styles.css">
-        <link rel="stylesheet" href="enemy/enemy-styles.css">
-        <link rel="stylesheet" href="columns/column-styles.css">
-        <link rel="stylesheet" href="random/easter-eggs-styles.css">
-        <link rel="stylesheet" href="weapons/weapon-styles.css">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="assets/goob_big_eyes.ico" />
+        <link rel="stylesheet" href="game/game-styles.css" />
+        <link rel="stylesheet" href="character/character-styles.css" />
+        <link rel="stylesheet" href="enemy/enemy-styles.css" />
+        <link rel="stylesheet" href="columns/column-styles.css" />
+        <link rel="stylesheet" href="random/easter-eggs-styles.css" />
+        <link rel="stylesheet" href="weapons/weapon-styles.css" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Goob</title>
     </head>
     <body>
@@ -26,7 +26,7 @@
                 <div class="left-column">
                     <h1>Introduction</h1>
                     <h3>Welcome to Goob!</h3>
-                    <br>
+                    <br />
                     Some basic instructions:
                     <ul>
                         <li>
@@ -39,10 +39,10 @@
                     <p>
                         Last Updates: Added rapid firing, Big Minion, hurtboxes, You Can Die, enemies spawn near borders
                     </p>
-                    <p>Current record: Round 11</p>
+                    <p>Current record: Round 15</p>
                     <p></p>
                     <audio id="background-music" loop>
-                        <source src="assets/Bury-the-Light-(Kazoo-Cover).mp3" type="audio/mpeg">
+                        <source src="assets/Bury-the-Light-(Kazoo-Cover).mp3" type="audio/mpeg" />
                         Your browser does not support the audio element.
                     </audio>
                     <button id="music-toggle-button">Toggle Music</button>
@@ -61,13 +61,13 @@
                         <li>
                             <div style="display: flex; align-items: center">
                                 <p>Goob has a cousin named Loob!</p>
-                                <br>
+                                <br />
                                 <img
                                     id="column-loob"
                                     src="assets/loob.png"
                                     alt="Loob"
                                     style="width: 50px; height: 70px; margin-left: auto; margin-right: auto"
-                                >
+                                />
                                 <!-- <div style="display: flex; justify-content: center;">
                             <img src="assets\loob.png" style="width: 50px; height: auto; text-align: center;"></p>
                         </div> -->
@@ -77,12 +77,12 @@
                 </div>
             </div>
         </div>
+        <script type="module" src="random/utility.js"></script>
         <script type="module" src="game/game.js"></script>
         <script type="module" src="character/character.js"></script>
         <script type="module" src="enemy/enemy.js"></script>
         <script type="module" src="enemy/enemy-spawning.js"></script>
         <script type="module" src="weapons/weapon-spawning.js"></script>
-        <script type="module" src="random/utility.js"></script>
         <script type="module" src="random/easter-eggs.js"></script>
         <script type="module" src="game/collisions.js"></script>
         <script type="module" src="weapons/weapons.js"></script>

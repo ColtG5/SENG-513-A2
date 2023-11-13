@@ -4,6 +4,14 @@
 /* Name: Colton Gowans */
 /* UCID: 30143970 */
 
+import { listenForGameContainerChange } from "../random/utility.js";
+
+let gameContainer = document.getElementById("game-container");
+
+listenForGameContainerChange((newGameContainer) => {
+    gameContainer = newGameContainer;
+});
+
 // class for a zombie
 class Zombie {
     constructor(id, type, hp, damage, defense, speed, xp, money, image) {

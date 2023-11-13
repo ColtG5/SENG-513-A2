@@ -4,15 +4,30 @@
 /* Name: Colton Gowans */
 /* UCID: 30143970 */
 
-import { resetKeyStates } from "../character/character.js";
+// import { resetKeyStates } from "../character/character.js";
 
 let gameContainer = document.getElementById("game-container");
 
-// this doesnt work as intended (updating gameContainer for all other files), will fix later
-setInterval(() => {
-    gameContainer = document.getElementById("game-container");
-    squareGameGridChecker();
-}, 100);
+// // this doesnt work as intended (updating gameContainer for all other files), will fix later
+// setInterval(() => {
+//     gameContainer = document.getElementById("game-container");
+//     squareGameGridChecker();
+// }, 100);
+
+window.addEventListener("resize", () => {
+    const newGameContainer = document.getElementById("game-container");
+    setGameContainer(newGameContainer);
+});
+
+const gameContainerListeners = [];
+
+const listenForGameContainerChange = (callback) => {
+    gameContainerListeners.push(callback);
+};
+
+const setGameContainer = (newGameContainer) => {
+    gameContainerListeners.forEach((callback) => callback(newGameContainer));
+};
 
 // tells you when your game grid is not square! (by changing border color from brown to red)
 function squareGameGridChecker() {
@@ -41,22 +56,20 @@ function toggleMusic() {
     console.log("toggled music");
 }
 
-// deprectated but will keep around
-let onWindow = true;
-function getOnWindow() {
-    return onWindow;
-}
+const focusListeners = [];
 
-// check for if the player is on the window or not
-window.onfocus = function (ev) {
+const listenForFocusEvent = (callback) => {
+    focusListeners.push(callback);
+};
+
+window.onfocus = function () {
     console.log("gained focus");
-    onWindow = true;
+    focusListeners.forEach((callback) => callback(true));
 };
 
-window.onblur = function (ev) {
-    onWindow = false;
+window.onblur = function () {
     console.log("lost focus");
-    resetKeyStates();
+    focusListeners.forEach((callback) => callback(false));
 };
 
-export { squareGameGridChecker, toggleMusic, onWindow, gameContainer };
+export { listenForGameContainerChange, listenForFocusEvent, squareGameGridChecker, toggleMusic };

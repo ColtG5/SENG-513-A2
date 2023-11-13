@@ -5,7 +5,7 @@
 /* UCID: 30143970 */
 
 import { updateCharacterPosition } from "../character/character.js";
-import { squareGameGridChecker } from "../utility.js";
+import { squareGameGridChecker } from "../random/utility.js";
 import { collisionsToCheck } from "./collisions.js";
 import { updateBullets, updateEnemies } from "./update-objects.js";
 import { startWave } from "../enemy/enemy-spawning.js";
@@ -22,6 +22,8 @@ let accumulatedTime = 0; // sum of time since last frame
 
 // updates the game logic every game tick
 function updateGame(accumulatedTime, timestamp, gameTickInterval) {
+    squareGameGridChecker();
+
     updateCharacterPosition();
     updateEnemies();
     updateBullets();
@@ -33,7 +35,7 @@ function updateGame(accumulatedTime, timestamp, gameTickInterval) {
 
 // renders the game every game tick
 function renderGame() {
-    squareGameGridChecker();
+    // squareGameGridChecker();
 }
 
 // toggles the game over state

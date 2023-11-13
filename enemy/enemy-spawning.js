@@ -5,7 +5,14 @@
 /* UCID: 30143970 */
 
 import { createZombie, createBigMinion } from "./enemy.js";
-import { gameContainer } from "../utility.js";
+import { listenForGameContainerChange } from "../random/utility.js";
+
+let gameContainer = document.getElementById("game-container");
+
+listenForGameContainerChange((newGameContainer) => {
+    gameContainer = newGameContainer;
+    makeSpawnZones();
+});
 
 let enemies = []; // holds currently spawned enemies
 const numOfSpawnZonesASide = 10; // controls how many spawn zones on each side there are
@@ -51,9 +58,9 @@ function makeSpawnZones() {
             height: zoneHeight,
         });
     }
-    
+
     // create the left and right zones
-    for (let i = 0; i < numOfSpawnZonesASide-1; i++) {
+    for (let i = 0; i < numOfSpawnZonesASide - 1; i++) {
         enemySpawnZones.push({
             x: 0,
             y: i * zoneHeight,
@@ -82,6 +89,8 @@ function positionEnemy(enemy, zone) {
         Math.floor(Math.random() * (spawnZone.height - enemy.element.offsetHeight)) + spawnZone.y + "px";
     enemy.element.style.left =
         Math.floor(Math.random() * (spawnZone.width - enemy.element.offsetWidth)) + spawnZone.x + "px";
+
+    console.log(`gameContainer: ${gameContainer.offsetWidth} ${gameContainer.offsetHeight}`);
 
     enemies.push(enemy);
 }

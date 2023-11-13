@@ -4,7 +4,19 @@
 /* Name: Colton Gowans */
 /* UCID: 30143970 */
 
-import { gameContainer } from "../utility.js";
+import { listenForGameContainerChange, listenForFocusEvent } from "../random/utility.js";
+
+let gameContainer = document.getElementById("game-container");
+
+listenForGameContainerChange((newGameContainer) => {
+    gameContainer = newGameContainer;
+});
+
+listenForFocusEvent((isFocused) => {
+    if (!isFocused) {
+        resetKeyStates();
+    }
+});
 
 // class for the main character
 class Character {
@@ -121,13 +133,13 @@ function updateCharacterOrientation(dx, dy) {
     }
 }
 
+// holds what keys are currently pressed
+const keyStates = {};
+
 // check if a key is currently pressed
 function isKeyDown(key) {
     return keyStates[key] === true;
 }
-
-// holds what keys are currently pressed
-const keyStates = {};
 
 // listen for a key press
 window.addEventListener("keydown", (e) => {

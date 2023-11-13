@@ -5,11 +5,21 @@
 /* UCID: 30143970 */
 
 import { createBullet } from "../weapons/weapons.js";
-import { onWindow } from "../utility.js";
 import { gunImage } from "../character/character.js";
-import { gameContainer } from "../utility.js";
 import { getGameOver } from "../game/game.js";
 import { character } from "../character/character.js";
+import { listenForGameContainerChange, listenForFocusEvent } from "../random/utility.js";
+
+let gameContainer = document.getElementById("game-container");
+
+listenForGameContainerChange((newGameContainer) => {
+    gameContainer = newGameContainer;
+});
+
+let onWindow = true;
+listenForFocusEvent((isFocused) => {
+    onWindow = isFocused;
+});
 
 // hold all the bullets spawned
 let bullets = [];
@@ -102,9 +112,15 @@ function spawnBullet(event) {
     bullet.dy = dy;
 
     const bulletStartX =
-        character.element.offsetLeft + character.element.offsetWidth / 2 + dx * seperationFromCharacter - bulletWidth / 2;
+        character.element.offsetLeft +
+        character.element.offsetWidth / 2 +
+        dx * seperationFromCharacter -
+        bulletWidth / 2;
     const bulletStartY =
-        character.element.offsetTop + character.element.offsetHeight / 2 + dy * seperationFromCharacter - bulletHeight / 2;
+        character.element.offsetTop +
+        character.element.offsetHeight / 2 +
+        dy * seperationFromCharacter -
+        bulletHeight / 2;
 
     bullet.element.style.offsetWidth = bulletWidth + "px";
     bullet.element.style.offsetHeight = bulletHeight + "px";

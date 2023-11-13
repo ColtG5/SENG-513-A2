@@ -7,8 +7,14 @@
 import { character } from "../character/character.js";
 import { enemies } from "../enemy/enemy-spawning.js";
 import { bullets } from "../weapons/weapon-spawning.js";
-import { gameContainer } from "../utility.js";
 import { endScreen } from "./endgame.js";
+import { listenForGameContainerChange } from "../random/utility.js";
+
+let gameContainer = document.getElementById("game-container");
+
+listenForGameContainerChange((newGameContainer) => {
+    gameContainer = newGameContainer;
+});
 
 const maxX = gameContainer.offsetWidth;
 const maxY = gameContainer.offsetHeight;
