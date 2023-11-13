@@ -4,7 +4,7 @@
 /* Name: Colton Gowans */
 /* UCID: 30143970 */
 
-import { resetKeyStates } from "./character/character.js";
+import { resetKeyStates } from "../character/character.js";
 
 let gameContainer = document.getElementById("game-container");
 
