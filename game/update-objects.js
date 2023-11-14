@@ -9,7 +9,9 @@ import { bullets } from "../weapons/weapon-spawning.js";
 import { isColliding } from "./collisions.js";
 import { character } from "../character/character.js";
 
-// get dx, dy for enemy to move towards character
+// Custom algorithm:
+// given an entity to move, and an entity for it to move towards, calculate the
+// direction vectors for that entities movement
 function getDirectionToMove(mover, target) {
     // move the enemies to the center of the player
     let characterCenterX = target.element.offsetLeft + target.element.offsetWidth / 2;

@@ -38,6 +38,21 @@
     }
 }
 
+.goob-death-animation {
+    animation: goob-dead 5s;
+}
+
+@keyframes goob-dead {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
 /* styles to apply with javascript to make the players image rotate around */
 #character.character-up {
     transform: scaleY(-1);

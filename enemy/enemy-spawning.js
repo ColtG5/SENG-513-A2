@@ -36,7 +36,8 @@ function spawnBigMinion(numToSpawn = 1) {
     }
 }
 
-// create the spawn zones for enemies to choose to spawn in (so enemies spawn on the sides of the map)
+// makes certian number of discrete "spawn zones" for enemies to spawn in, so we 
+// can enforce them spawning in predictable spots, as well as near the border
 function makeSpawnZones() {
     const width = gameContainer.offsetWidth;
     const height = gameContainer.offsetHeight;
@@ -83,7 +84,7 @@ function positionEnemy(enemy, zone) {
     // put enemy onto screen
     gameContainer.appendChild(enemy.element);
 
-    // move it to spot
+    // move enemy to spot
     const spawnZone = enemySpawnZones[zone];
     enemy.element.style.top =
         Math.floor(Math.random() * (spawnZone.height - enemy.element.offsetHeight)) + spawnZone.y + "px";
@@ -130,6 +131,10 @@ const roundsBetweenBigMinionHordeSizeIncrease = 8; // amount of rounds before mo
 let extraZombiesEachRound = 1; // how many more zombies spawn each round
 let extraBigMinionsEachRound = 0.2; // how many more big minions spawn each round
 
+// Custom Algorithm:
+// the round number correlates exactly to how many of each enemy will spawn each round,
+// to make the rounds progressively harder. This function uses the values defined above
+// to spawn enemies based on the current round number
 function spawnDuringRound() {
     // how many of each enemy to spawn this round (correlated to the current round number)
     let zombieCountForRound = startingZombieCount + Math.floor(extraZombiesEachRound * countingRounds);
@@ -181,7 +186,10 @@ function spawnDuringRound() {
     }, 1000);
 }
 
-// determines which enemy to spawn for each second of the round
+// Custom Algorithm:
+// takes as input all enemies left to spawn that round (and their spawning associated spawning information)
+// and determines which will spawn next. It decides which will be spawned by weighting the remaining count
+// of each enemy to spawn, and then favouring enemies with more left to spawn. 
 function randomEnemyFromRaffle(enemySpawnStuff) {
     const keys = Object.keys(enemySpawnStuff); // get all types of enemies
 

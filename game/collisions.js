@@ -53,8 +53,9 @@ function bulletWallCollision() {
         }
     });
 }
-
-// check if any two elements are colliding (overlapping)
+// Custom Interaction Mechanism:
+// this method is the collision system for the game. It compares where two entities are on the screen,
+// and reports if they have "collided" (pixel coordinates overlapped)
 function isColliding(elm1, elm2) {
     // use the hit/hurt box of an entity, not its actual position
     const elm1Hurtbox = elm1.element.children[0];
@@ -70,6 +71,7 @@ function isColliding(elm1, elm2) {
     const elm2Top = elm2.element.offsetTop + elm2Hurtbox.offsetTop;
     const elm2Bottom = elm2Top + elm2.element.offsetHeight - elm2Hurtbox.offsetTop * 2;
 
+    // if these entities overlap each other on the screen, they have "collided"!
     if (elm1Left < elm2Right && elm1Right > elm2Left && elm1Top < elm2Bottom && elm1Bottom > elm2Top) {
         return true;
     }
@@ -133,7 +135,6 @@ function enemyCharacterCollision(enemy, character) {
         character.element.style.backgroundImage = `url(${character.image})`;
     }, 200);
 
-
     // update health and healthbar
     character.hp -= enemy.damage;
     let healthbar = character.element.querySelector("progress");
@@ -148,6 +149,10 @@ function enemyCharacterCollision(enemy, character) {
     // if player died, end the game
     if (character.hp <= 0) {
         // console.log("you died");
+        character.element.classList.add("goob-death-animation");
+        setTimeout(() => {
+            character.element.remove();
+        }, 5000);
         // show the eng game screen where they cant do anything
         endScreen();
     }
