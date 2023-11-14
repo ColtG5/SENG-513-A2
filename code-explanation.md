@@ -1,4 +1,9 @@
-Code Explanation:
+Course: SENG 513
+Date: November 13th, 2023
+Assignment 3
+Name: Colton Gowans
+UCID: 30143970
+### Code Explanation:
 
 Three different complex parts of my code are:
 1. Game loop  

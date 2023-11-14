@@ -1,6 +1,6 @@
 /* Course: SENG 513 */
-/* Date: October 23rd, 2023 */
-/* Assignment 2 */
+/* Date: November 13th, 2023 */
+/* Assignment 3 */
 /* Name: Colton Gowans */
 /* UCID: 30143970 */
 
@@ -81,7 +81,18 @@ function createZombie() {
 }
 
 function createBigMinion() {
-    let bigMinion = new BigMinion(++id, "bigMinion", 200, 10, 5, 1.7, 8, 50, "assets/BIG-MINION.png", "animations/BIG-MINION-red.png");
+    let bigMinion = new BigMinion(
+        ++id,
+        "bigMinion",
+        200,
+        10,
+        5,
+        1.7,
+        8,
+        50,
+        "assets/BIG-MINION.png",
+        "animations/BIG-MINION-red.png"
+    );
     // console.log(bigMinion);
     return bigMinion;
 }

@@ -1,6 +1,6 @@
 /* Course: SENG 513 */
-/* Date: October 23rd, 2023 */
-/* Assignment 2 */
+/* Date: November 13th, 2023 */
+/* Assignment 3 */
 /* Name: Colton Gowans */
 /* UCID: 30143970 */
 
@@ -36,7 +36,7 @@ function spawnBigMinion(numToSpawn = 1) {
     }
 }
 
-// makes certian number of discrete "spawn zones" for enemies to spawn in, so we 
+// makes certian number of discrete "spawn zones" for enemies to spawn in, so we
 // can enforce them spawning in predictable spots, as well as near the border
 function makeSpawnZones() {
     const width = gameContainer.offsetWidth;
@@ -189,7 +189,7 @@ function spawnDuringRound() {
 // Custom Algorithm:
 // takes as input all enemies left to spawn that round (and their spawning associated spawning information)
 // and determines which will spawn next. It decides which will be spawned by weighting the remaining count
-// of each enemy to spawn, and then favouring enemies with more left to spawn. 
+// of each enemy to spawn, and then favouring enemies with more left to spawn.
 function randomEnemyFromRaffle(enemySpawnStuff) {
     const keys = Object.keys(enemySpawnStuff); // get all types of enemies
 

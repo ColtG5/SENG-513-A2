@@ -1,4 +1,9 @@
-Reflection:
+Course: SENG 513
+Date: November 13th, 2023
+Assignment 3
+Name: Colton Gowans
+UCID: 30143970
+### Reflection:
 
 Some things I learned:
 - making a game with no external tools, libraries, game engines etc. is a challenging but
