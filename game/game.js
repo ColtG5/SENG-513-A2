@@ -41,7 +41,7 @@ let previousTimestamp = 0; // time of last frame
 let accumulatedTime = 0; // sum of time since last frame
 
 // updates the game logic every game tick
-function updateGame(accumulatedTime, timestamp, gameTickInterval) {
+function updateGame() {
     squareGameGridChecker();
 
     updateCharacterPosition();
