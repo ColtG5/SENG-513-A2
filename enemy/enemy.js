@@ -14,7 +14,7 @@ listenForGameContainerChange((newGameContainer) => {
 
 // class for a zombie
 class Zombie {
-    constructor(id, type, hp, damage, defense, speed, xp, money, image) {
+    constructor(id, type, hp, damage, defense, speed, xp, money, image, hitImage) {
         this.id = id;
         this.type = type;
         this.hp = hp;
@@ -24,6 +24,7 @@ class Zombie {
         this.xp = xp;
         this.money = money;
         this.image = image;
+        this.hitImage = hitImage;
         this.element = document.createElement("div");
         this.element.classList.add("zombie");
         let hurtbox = document.createElement("div");
@@ -43,7 +44,7 @@ class Zombie {
 
 // class for a big minion
 class BigMinion {
-    constructor(id, type, hp, damage, defense, speed, xp, money, image) {
+    constructor(id, type, hp, damage, defense, speed, xp, money, image, hitImage) {
         this.id = id;
         this.type = type;
         this.hp = hp;
@@ -53,6 +54,7 @@ class BigMinion {
         this.xp = xp;
         this.money = money;
         this.image = image;
+        this.hitImage = hitImage;
         this.element = document.createElement("div");
         this.element.classList.add("big-minion");
         let hurtbox = document.createElement("div");
@@ -73,14 +75,14 @@ class BigMinion {
 let id = 0;
 
 function createZombie() {
-    let zombie = new Zombie(++id, "zombie", 40, 5, 2, 1.5, 1, 10, "assets/zombie.png");
-    console.log(zombie);
+    let zombie = new Zombie(++id, "zombie", 40, 5, 2, 1.5, 1, 10, "assets/zombie.png", "animations/zombie-red.png");
+    // console.log(zombie);
     return zombie;
 }
 
 function createBigMinion() {
-    let bigMinion = new BigMinion(++id, "bigMinion", 200, 10, 5, 1.7, 8, 50, "assets/BIG-MINION.png");
-    console.log(bigMinion);
+    let bigMinion = new BigMinion(++id, "bigMinion", 200, 10, 5, 1.7, 8, 50, "assets/BIG-MINION.png", "animations/BIG-MINION-red.png");
+    // console.log(bigMinion);
     return bigMinion;
 }
 

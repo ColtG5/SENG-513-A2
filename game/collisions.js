@@ -48,7 +48,7 @@ function bulletWallCollision() {
         if (bulletLeft < 0 || bulletRight > maxX || bulletTop < 0 || bulletBottom > maxY) {
             bullet.element.remove();
             bullets.splice(bullets.indexOf(bullet), 1);
-            console.log("bullet removed");
+            // console.log("bullet removed");
             return;
         }
     });
@@ -86,24 +86,36 @@ function bulletEnemyCollision(bullet, enemy) {
     enemy.hp -= bullet.damage;
     // if enemy died, remove it
     if (enemy.hp <= 0) {
-        enemy.element.remove();
+        enemy.element.classList.add("death-animation");
+        setTimeout(() => {
+            enemy.element.remove();
+        }, 400);
+        // enemy.element.remove();
         enemies.splice(enemies.indexOf(enemy), 1);
     }
 
-    // otherwise, update its health
+    // otherwise, give a hit indicator,
+    enemy.element.classList.add("got-hit");
+    enemy.element.style.backgroundImage = `url(${enemy.hitImage})`;
+    setTimeout(() => {
+        enemy.element.classList.remove("got-hit");
+        enemy.element.style.backgroundImage = `url(${enemy.image})`;
+    }, 200);
+
+    // and update its health
     let healthbar = enemy.element.querySelector("progress");
-    console.log(`\t\t\t${healthbar}`);
     healthbar.value = enemy.hp;
     bullet.health -= enemy.damage;
-    // if bullet lived (pierced), slow it down by half
-    bullet.speed = Math.floor(bullet.speed * 0.5);
+
+    // if bullet lived (pierced), slow it down by an amount
+    bullet.speed = Math.floor(bullet.speed * 0.7);
     // but if it died just remove it
     if (bullet.health <= 0) {
         bullet.element.remove();
         bullets.splice(bullets.indexOf(bullet), 1);
     }
 
-    // track what enemies a bullet has hit
+    // track what enemies a bullet has hit, so it cant hit them again!
     bullet.enemiesHit.push(enemy.id);
 }
 
@@ -114,6 +126,13 @@ function enemyCharacterCollision(enemy, character) {
         return;
     }
     // console.log("attacked");
+
+    // give a hit indicator that you got hit!
+    character.element.style.backgroundImage = `url(${character.hitImage})`;
+    setTimeout(() => {
+        character.element.style.backgroundImage = `url(${character.image})`;
+    }, 200);
+
 
     // update health and healthbar
     character.hp -= enemy.damage;

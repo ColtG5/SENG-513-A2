@@ -20,15 +20,13 @@ listenForFocusEvent((isFocused) => {
 
 // class for the main character
 class Character {
-    constructor(type, hp, damage, defense, speed, xp, money, image) {
+    constructor(type, hp, defense, speed, image, hitImage) {
         this.type = type;
         this.hp = hp;
-        this.damage = damage;
         this.defense = defense;
         this.speed = speed;
-        this.xp = xp;
-        this.money = money;
         this.image = image;
+        this.hitImage = hitImage;
         this.element = document.createElement("div");
         this.element.id = "character";
         let hurtbox = document.createElement("div");
@@ -45,11 +43,10 @@ class Character {
         this.canAttack = true;
     }
 }
-// only hp is used for now, other to be implemented later
-let character = new Character("character", 100);
+// not everything used, might implement later
+let character = new Character("character", 100, 0, 3, "assets/goob_big_eyes.png", "animations/goob_big_eyes_red.png");
 gameContainer.appendChild(character.element);
 
-const movementSpeed = 3;
 const maxX = gameContainer.offsetWidth;
 const maxY = gameContainer.offsetHeight;
 
@@ -60,6 +57,7 @@ let dy = 0;
 
 // deal with moving the player
 function updateCharacterPosition() {
+    const movementSpeed = character.speed;
     if (isKeyDown("w")) {
         dy = -movementSpeed;
     } else if (isKeyDown("s")) {

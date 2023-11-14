@@ -90,8 +90,6 @@ function positionEnemy(enemy, zone) {
     enemy.element.style.left =
         Math.floor(Math.random() * (spawnZone.width - enemy.element.offsetWidth)) + spawnZone.x + "px";
 
-    console.log(`gameContainer: ${gameContainer.offsetWidth} ${gameContainer.offsetHeight}`);
-
     enemies.push(enemy);
 }
 

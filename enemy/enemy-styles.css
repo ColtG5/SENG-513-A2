@@ -4,6 +4,38 @@
 /* Name: Colton Gowans */
 /* UCID: 30143970 */
 
+/* animation for when an enemy is hit */
+
+.got-hit {
+    animation: got-hit 0.2s;
+}
+
+@keyframes got-hit {
+    0% {
+    }
+    50% {
+        rotate: 2deg;
+    }
+    100% {
+        rotate: -2deg;
+    }
+}
+
+.death-animation {
+    animation: dead 0.5s;
+}
+
+@keyframes dead {
+    from {
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: rotate(360deg) scale(0);
+        opacity: 0;
+    }
+}
+
 /* styles of a zombie */
 .zombie {
     background-image: url(../assets/zombie.png);

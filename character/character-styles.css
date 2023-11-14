@@ -22,6 +22,22 @@
     position: absolute;
 }
 
+.goob-got-hit {
+    animation: goob-got-hit 0.2s;
+}
+
+@keyframes goob-got-hit {
+    0% {
+        background-color: transparent;
+    }
+    50% {
+        background-color: red;
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
 /* styles to apply with javascript to make the players image rotate around */
 #character.character-up {
     transform: scaleY(-1);
